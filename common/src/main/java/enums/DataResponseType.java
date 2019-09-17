@@ -1,4 +1,4 @@
-package app.enums;
+package enums;
 
 public enum DataResponseType {
     HTML,

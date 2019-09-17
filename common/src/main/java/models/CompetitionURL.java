@@ -1,6 +1,6 @@
-package app.models;
+package models;
 
-import app.service.StringHelper;
+import service.StringHelper;
 
 public class CompetitionURL {
 

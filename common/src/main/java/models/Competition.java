@@ -1,10 +1,9 @@
-package app.models;
+package models;
 
-import app.enums.ScoringSystem;
+import enums.ScoringSystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class Competition {
@@ -55,7 +54,6 @@ public class Competition {
         }
     }
 
-
     private boolean firstCharOfStringIsDigit(String str) {
         return str.length() > 0 && Character.isDigit(str.charAt(0));
     }
@@ -68,7 +66,6 @@ public class Competition {
         }
         return null;
     }
-
 
     public void updateRankings() {
         // After sorting, the position will no longer be accurate, therefore they need to be re-adjusted

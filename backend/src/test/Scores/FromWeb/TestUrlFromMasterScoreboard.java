@@ -3,14 +3,13 @@ package Scores.FromWeb;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import app.models.UrlConverter;
+import models.UrlConverter;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static app.service.LoginService.autoLogin;
 import static junit.framework.TestCase.assertEquals;
-
+import static service.LoginService.autoLogin;
 
 public class TestUrlFromMasterScoreboard {
 

@@ -1,4 +1,4 @@
-package app.service;
+package service;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;

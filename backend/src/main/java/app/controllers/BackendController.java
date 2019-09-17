@@ -1,21 +1,22 @@
 package app.controllers;
 
-import app.enums.DataResponseType;
-import app.service.StringHelper;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import app.models.Competition;
-import app.models.CompetitionURL;
-import app.models.Golfer;
-import app.models.UrlConverter;
+import enums.DataResponseType;
+import models.Competition;
+import models.CompetitionURL;
+import models.Golfer;
+import models.UrlConverter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import service.StringHelper;
 
 import java.io.IOException;
 import java.util.List;
 
-import static app.service.LoginService.autoLogin;
+import static service.LoginService.autoLogin;
+
 
 @RestController
 public class BackendController {
@@ -57,4 +58,3 @@ public class BackendController {
         return dataResponseType == DataResponseType.HTML ? page.getWebResponse().getContentAsString() : page.asText();
     }
 }
-

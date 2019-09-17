@@ -1,4 +1,4 @@
-package app.models;
+package models;
 
 public abstract class Golfer implements Comparable {
 

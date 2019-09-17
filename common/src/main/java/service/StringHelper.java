@@ -1,4 +1,4 @@
-package app.service;
+package service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import static org.apache.commons.lang3.StringUtils.substringAfter;
 import static org.apache.commons.lang3.StringUtils.substringBefore;
-
 
 public class StringHelper {
 

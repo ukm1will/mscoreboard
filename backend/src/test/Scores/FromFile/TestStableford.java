@@ -1,10 +1,10 @@
 package Scores.FromFile;
 
 import app.data.Stableford_03_AUG;
-import app.models.Competition;
-import app.models.StablefordGolfer;
-import app.service.StringHelper;
+import models.Competition;
+import models.StablefordGolfer;
 import org.junit.Test;
+import service.StringHelper;
 
 import java.util.Collections;
 
