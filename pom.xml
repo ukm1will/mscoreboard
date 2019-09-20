@@ -10,5 +10,6 @@
     <modules>
         <module>backend</module>
         <module>common</module>
+        <module>score_converter</module>
     </modules>
 </project>
