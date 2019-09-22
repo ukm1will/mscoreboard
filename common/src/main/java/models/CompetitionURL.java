@@ -21,6 +21,15 @@ public class CompetitionURL {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "CompetitionURL{" +
+                "dateOfCompetition='" + dateOfCompetition + '\'' +
+                ", competitionTitle='" + competitionTitle + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
     CompetitionURL(String str) {
         this.dateOfCompetition = StringHelper.removeAfter(str, "<a");
         String viewID = StringHelper.splitBeforeAndAfter(str, "View=", "'>");
