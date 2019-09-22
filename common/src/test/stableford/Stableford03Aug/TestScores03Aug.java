@@ -1,6 +1,6 @@
-package done.stableford.Stableford03Aug;
+package stableford.Stableford03Aug;
 
-import app.data.Stableford_03_AUG;
+import data.stableford.Stableford_03_AUG;
 import models.Competition;
 import models.StablefordGolfer;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestStableford {
+public class TestScores03Aug {
 
     private final String currentDataFile = Stableford_03_AUG.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
@@ -67,5 +67,9 @@ public class TestStableford {
         StablefordGolfer deanMorris = (StablefordGolfer) competition.find("Dean Morris");
         assertEquals("Dean Morris", deanMorris.getName());
         assertEquals(1, deanMorris.getPosition());
+        assertEquals(65, deanMorris.getGross());
+        assertEquals(66, deanMorris.getNett());
+        assertEquals(-1, deanMorris.getHandicap());
+        assertEquals(42, deanMorris.getPts());
     }
 }

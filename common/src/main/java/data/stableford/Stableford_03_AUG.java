@@ -1,4 +1,4 @@
-package app.data;
+package data.stableford;
 
 public class Stableford_03_AUG {
 

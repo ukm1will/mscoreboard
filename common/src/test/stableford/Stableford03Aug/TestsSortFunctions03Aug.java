@@ -1,9 +1,8 @@
-package done.stableford.Stableford03Aug;
+package stableford.Stableford03Aug;
 
-import app.data.Stableford_03_AUG;
+import data.stableford.Stableford_03_AUG;
 import models.Competition;
 import models.Golfer;
-import org.junit.Before;
 import org.junit.Test;
 import service.StringHelper;
 
@@ -11,7 +10,7 @@ import java.util.Collections;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class TestsSortFunctions {
+public class TestsSortFunctions03Aug {
 
     private final String currentDataFile = Stableford_03_AUG.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
@@ -44,7 +43,9 @@ public class TestsSortFunctions {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
+        System.out.println(competition.golfers.toString());
         Collections.sort(competition.golfers);
+        System.out.println(competition.golfers.toString());
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
         assertEquals("R. A. Evans", posOne.getName());

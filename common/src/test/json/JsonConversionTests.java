@@ -1,4 +1,4 @@
-package done.stableford.Stableford03Aug;
+package json;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
@@ -11,8 +11,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonConvertTests {
-
+public class JsonConversionTests {
 
     @Test
     public void ShouldReturnListOfURLFromJsonString() throws IOException {

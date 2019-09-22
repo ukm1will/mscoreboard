@@ -1,10 +1,9 @@
-package done.medal.NeathCup2019;
+package urls;
 
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import models.Competition;
-import org.junit.Before;
 import org.junit.Test;
 import service.StringHelper;
 

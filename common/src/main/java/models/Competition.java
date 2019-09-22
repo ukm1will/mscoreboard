@@ -48,7 +48,7 @@ public class Competition {
 
     private void addMedalGolfers() {
         for (String result : results) {
-            Golfer golfer = new StablefordGolfer();
+            Golfer golfer = new MedalGolfer();
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
@@ -56,6 +56,7 @@ public class Competition {
             }
         }
     }
+
 
 
     private void addStablefordGolfers() throws Exception {

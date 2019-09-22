@@ -1,6 +1,6 @@
 package done.medal.NeathCup2019;
 
-import app.data.NeathCup2019;
+import data.medal.NeathCup2019;
 import models.Competition;
 import models.Golfer;
 import org.junit.Before;
@@ -11,7 +11,7 @@ import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
-public class WebAppTestsSortFunctions {
+public class TestSortNeathCup2019 {
 
     private final String currentDataFile = NeathCup2019.WHOLE_PAGE;
 

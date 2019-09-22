@@ -1,4 +1,4 @@
-package done.urls;
+package urls;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
