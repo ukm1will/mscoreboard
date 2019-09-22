@@ -38,8 +38,23 @@ public class Competition {
     public void addGolfersToCompetition() throws Exception {
         if (scoringSystem == ScoringSystem.STABLEFORD) {
             addStablefordGolfers();
-        } else
+        }
+        else if(scoringSystem == ScoringSystem.MEDAL) {
+            addMedalGolfers();
+        }
+        else
             throw new UnsupportedOperationException("Trouble at mill in Competition");
+    }
+
+    private void addMedalGolfers() {
+        for (String result : results) {
+            Golfer golfer = new StablefordGolfer();
+            golfer.split(result);
+            if (firstCharOfStringIsDigit(result)) {
+                golfer.assignAttributes();
+                golfers.add(golfer);
+            }
+        }
     }
 
 

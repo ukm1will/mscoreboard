@@ -2,11 +2,14 @@ package models;
 
 import service.StringHelper;
 
+import java.util.List;
+
 public class CompetitionURL {
 
     private String dateOfCompetition;
     private String competitionTitle;
     private String url;
+
 
 
     public void setDateOfCompetition(String dateOfCompetition) {
@@ -21,15 +24,24 @@ public class CompetitionURL {
         this.url = url;
     }
 
+    public static String toString(List<CompetitionURL> urls) {
+        StringBuilder sb = new StringBuilder();
+        for (CompetitionURL compUrl: urls) {
+            sb.append(compUrl.toString());
+        }
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         return "CompetitionURL{" +
                 "dateOfCompetition='" + dateOfCompetition + '\'' +
                 ", competitionTitle='" + competitionTitle + '\'' +
                 ", url='" + url + '\'' +
-                '}';
-    }
+                "}\n";
 
+
+    }
     CompetitionURL(String str) {
         this.dateOfCompetition = StringHelper.removeAfter(str, "<a");
         String viewID = StringHelper.splitBeforeAndAfter(str, "View=", "'>");
