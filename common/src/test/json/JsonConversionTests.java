@@ -35,14 +35,4 @@ public class JsonConversionTests {
         System.out.println(CompetitionURL.toString(urls));
     }
 
-    @Test
-    public void ShouldReturnListOfURLFromService() throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
-        String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
-        Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<CompetitionURL>>() {
-        }.getType();
-        List<CompetitionURL> urls = gson.fromJson(json, listType);
-        System.out.println(CompetitionURL.toString(urls));
-    }
 }

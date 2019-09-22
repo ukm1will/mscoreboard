@@ -1,6 +1,7 @@
 package medal.ClubMedal08Aug2019;
 
 import data.medal.ClubMedal08Aug2019;
+import data.stableford.Stableford_03_AUG;
 import models.Competition;
 import models.Golfer;
 import org.junit.Before;
@@ -14,14 +15,9 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestScores08Aug {
 
-    final String currentDataFile = ClubMedal08Aug2019.WHOLE_PAGE;
-    Competition competition;
+    private final String currentDataFile = ClubMedal08Aug2019.WHOLE_PAGE;
+    private Competition competition = new Competition(currentDataFile);
 
-    @Before
-    public void doBefore() {
-        competition = new Competition(currentDataFile);
-        assertEquals(MEDAL, competition.getScoringSystem());
-    }
 
     @Test
     public void CompetitionShouldBeMedal() {
@@ -83,17 +79,6 @@ public class TestScores08Aug {
         assertEquals("Nigel P. Maimone", posTwo.getName());
     }
 
-    @Test
-    public void BeforeSortingCheckPositions() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-        competition.addResultsToCompetition(activeData);
-        competition.addGolfersToCompetition();
-        Golfer posOne = competition.golfers.get(0);
-        Golfer posTwo = competition.golfers.get(1);
-        assertEquals(1, posOne.getPosition());
-        assertEquals(2, posTwo.getPosition());
-    }
-
 
     @Test
     public void AfterSortingCheckNames() throws Exception {
@@ -107,16 +92,5 @@ public class TestScores08Aug {
         assertEquals("Gareth M Edwards", posTwo.getName());
     }
 
-    @Test
-    public void AfterSettingNewRankingsCheckPositions() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-        competition.addResultsToCompetition(activeData);
-        competition.addGolfersToCompetition();
-        Collections.sort(competition.golfers);
-        competition.updateRankings();
-        Golfer posOne = competition.golfers.get(0);
-        Golfer posTwo = competition.golfers.get(1);
-        assertEquals(1, posOne.getPosition());
-        assertEquals(2, posTwo.getPosition());
-    }
+
 }
