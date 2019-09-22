@@ -1,4 +1,4 @@
-package Scores.FromFile;
+package done.stableford.Stableford03Aug;
 
 import app.data.Stableford_03_AUG;
 import models.Competition;

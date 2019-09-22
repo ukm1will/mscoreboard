@@ -1,4 +1,4 @@
-package Scores.FromWeb;
+package done.urls;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
@@ -11,11 +11,11 @@ import java.io.IOException;
 import static junit.framework.TestCase.assertEquals;
 import static service.LoginService.autoLogin;
 
-public class TestUrlFromMasterScoreboard {
+public class UrlFromMasterScoreboard {
 
     private String currentDataSource;
 
-    public TestUrlFromMasterScoreboard() throws IOException {
+    public UrlFromMasterScoreboard() throws IOException {
         final String url = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
         final String password = "swanseabay";
         WebClient webClient;
