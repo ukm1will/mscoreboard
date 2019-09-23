@@ -18,11 +18,11 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 import static service.LoginService.autoLogin;
 
-public class UrlFromMasterScoreboard {
+public class UrlFromMasterScoreboard_todo {
 
     private String currentDataSource;
 
-    public UrlFromMasterScoreboard() throws IOException {
+    public UrlFromMasterScoreboard_todo() throws IOException {
         final String url = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
         final String password = "swanseabay";
         WebClient webClient;

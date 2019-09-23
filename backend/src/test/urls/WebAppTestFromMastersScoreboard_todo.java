@@ -12,7 +12,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static service.LoginService.autoLogin;
 
-public class WebAppTestFromMastersScoreboard {
+public class WebAppTestFromMastersScoreboard_todo {
 
     final String url = "https://www.masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
     final String password = "swanseabay";

@@ -9,6 +9,7 @@ public class CompetitionURL {
     private String dateOfCompetition;
     private String competitionTitle;
     private String url;
+    private int viewId;
 
 
 
