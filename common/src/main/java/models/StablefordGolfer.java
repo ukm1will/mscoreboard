@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class StablefordGolfer extends Golfer {
 
     private int pts;
@@ -8,16 +10,25 @@ public class StablefordGolfer extends Golfer {
         return pts;
     }
 
+
+    public static String toString(List<StablefordGolfer> stablefordGolfers) {
+        StringBuilder sb = new StringBuilder();
+        for (StablefordGolfer stablefordGolfer: stablefordGolfers) {
+            sb.append(stablefordGolfer.toString());
+        }
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         return "StablefordGolfer{" +
+                "pts=" + pts +
                 ", position=" + position +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gross=" + gross +
                 ", nett=" + nett +
                 ", handicap=" + handicap +
-                ", pts=" + pts +
                 "}\n";
     }
 

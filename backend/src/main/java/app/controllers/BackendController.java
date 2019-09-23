@@ -63,7 +63,6 @@ public class BackendController {
 
 
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
     public List<CompetitionURL> getMasterScoreboardHomePage() throws IOException {
         String dataSource = getDataSource(msHomePage, DataResponseType.HTML);

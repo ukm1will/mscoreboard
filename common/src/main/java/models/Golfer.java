@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public abstract class Golfer implements Comparable {
 
     String[] partsOfScore;
@@ -42,9 +44,9 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-    public String getName() {
-        return firstName + " " + lastName;
-    }
+//    public String getName() {
+//        return firstName + " " + lastName;
+//    }
 
     public int getGross() {
         return gross;
@@ -54,9 +56,19 @@ public abstract class Golfer implements Comparable {
         return nett;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
     public int getHandicap() {
         return handicap;
     }
+
+
 
     void split(String s) {
         this.parts = s.split("\t");

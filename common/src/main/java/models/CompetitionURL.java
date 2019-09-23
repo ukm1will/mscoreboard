@@ -12,7 +12,6 @@ public class CompetitionURL {
     private int viewId;
 
 
-
     public void setDateOfCompetition(String dateOfCompetition) {
         this.dateOfCompetition = dateOfCompetition;
     }
