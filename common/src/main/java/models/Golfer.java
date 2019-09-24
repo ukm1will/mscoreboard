@@ -1,33 +1,48 @@
 package models;
 
-import java.util.List;
-
 public abstract class Golfer implements Comparable {
 
-    String[] partsOfScore;
-    int position;
-    String firstName;
-    String lastName;
+    protected String[] partsOfScore;
+    private int position;
+    private String forename;
+    private String surname;
+
+    public String getFullName() {
+        return forename + " " + surname;
+    }
+
+//    public String getAft() {
+//        return surname;
+//    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+//    public String getFore() {
+//        return forename;
+//    }
+
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    //    String firstName;
+//    String lastName;
     int gross;
     int nett;
     int handicap;
     private String[] parts;
 
-    Golfer() {
-        position = 0;
-        firstName = null;
-        lastName = null;
-        gross = 0;
-        nett = 0;
-        handicap = 0;
-    }
 
     public void assignAttributes() {
         String[] partsOfName = this.parts[1].split(",");
         partsOfScore = this.parts[2].split(" ");
         position = Integer.parseInt(parts[0]);
-        lastName = partsOfName[0].trim();
-        firstName = partsOfName[1].trim();
+        surname = partsOfName[0].trim();
+        forename = partsOfName[1].trim();
+//        lastName = partsOfName[0].trim();
+//        firstName = partsOfName[1].trim();
         handicap = calculateHandicap();
     }
 
@@ -44,9 +59,9 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-    public String getName() {
-        return firstName + " " + lastName;
-    }
+//    public String getName() {
+//        return firstName + " " + lastName;
+//    }
 
     public int getGross() {
         return gross;
@@ -56,13 +71,13 @@ public abstract class Golfer implements Comparable {
         return nett;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//
+//    public String getLastName() {
+//        return lastName;
+//    }
 
     public int getHandicap() {
         return handicap;
@@ -84,13 +99,14 @@ public abstract class Golfer implements Comparable {
     public int compareTo(Object obj) {
         Golfer that = (Golfer) obj;
         if (Integer.compare(this.gross, that.gross) == 0) {
-            if (this.lastName.compareTo(that.lastName) == 0) {
-                return this.firstName.compareTo(that.firstName);
-            } else {
-                return this.lastName.compareTo(that.lastName);
-            }
+//            if (this.lastName.compareTo(that.lastName) == 0) {
+//                return this.firstName.compareTo(that.firstName);
+//            } else {
+//                return this.lastName.compareTo(that.lastName);
+//            }
         } else {
             return Integer.compare(this.gross, that.gross);
         }
+        return 0;
     }
 }

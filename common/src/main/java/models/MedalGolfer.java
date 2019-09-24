@@ -13,17 +13,17 @@ public class MedalGolfer extends Golfer {
 
     }
 
-    @Override
-    public String toString() {
-        return "MedalGolfer{" +
-                "position=" + position +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gross=" + gross +
-                ", nett=" + nett +
-                ", handicap=" + handicap +
-                "}\n";
-    }
+//    @Override
+//    public String toString() {
+//        return "MedalGolfer{" +
+//                "position=" + position +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", gross=" + gross +
+//                ", nett=" + nett +
+//                ", handicap=" + handicap +
+//                "}\n";
+//    }
 
     @Override
     public void assignAttributes() {

@@ -63,7 +63,9 @@ public class Competition {
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
-                golfers.add(golfer);
+                if(golfers.size() <= 3) {
+                    golfers.add(golfer);
+                }
             }
         }
     }
@@ -73,11 +75,11 @@ public class Competition {
     }
 
     public Golfer find(String name) {
-        for (Golfer golfer : this.golfers) {
-            if (golfer.getName().equals(name)) {
-                return golfer;
-            }
-        }
+//        for (Golfer golfer : this.golfers) {
+//            if (golfer.getName().equals(name)) {
+//                return golfer;
+//            }
+//        }
         return null;
     }
 

@@ -19,18 +19,18 @@ public class StablefordGolfer extends Golfer {
         return sb.toString();
     }
 
-    @Override
-    public String toString() {
-        return "StablefordGolfer{" +
-                "pts=" + pts +
-                ", position=" + position +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", gross=" + gross +
-                ", nett=" + nett +
-                ", handicap=" + handicap +
-                "}\n";
-    }
+//    @Override
+//    public String toString() {
+//        return "StablefordGolfer{" +
+//                "pts=" + pts +
+//                ", position=" + position +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", gross=" + gross +
+//                ", nett=" + nett +
+//                ", handicap=" + handicap +
+//                "}\n";
+//    }
 
     @Override
     public void assignAttributes() {
