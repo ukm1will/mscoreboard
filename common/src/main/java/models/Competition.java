@@ -63,11 +63,12 @@ public class Competition {
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
-                if(golfers.size() <= 3) {
+                if(golfers.size() < 3) {
                     golfers.add(golfer);
                 }
             }
         }
+        int bp = 43;
     }
 
     private boolean firstCharOfStringIsDigit(String str) {

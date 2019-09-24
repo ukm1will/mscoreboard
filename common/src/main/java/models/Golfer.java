@@ -3,53 +3,13 @@ package models;
 public abstract class Golfer implements Comparable {
 
     protected String[] partsOfScore;
-    private int position;
-    private String forename;
-    private String surname;
-
-    public String getFullName() {
-        return forename + " " + surname;
-    }
-
-//    public String getAft() {
-//        return surname;
-//    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-//    public String getFore() {
-//        return forename;
-//    }
-
-    public void setForename(String forename) {
-        this.forename = forename;
-    }
-
-    //    String firstName;
-//    String lastName;
     int gross;
     int nett;
     int handicap;
+    private int position;
+    private String forename;
+    private String surname;
     private String[] parts;
-
-
-    public void assignAttributes() {
-        String[] partsOfName = this.parts[1].split(",");
-        partsOfScore = this.parts[2].split(" ");
-        position = Integer.parseInt(parts[0]);
-        surname = partsOfName[0].trim();
-        forename = partsOfName[1].trim();
-//        lastName = partsOfName[0].trim();
-//        firstName = partsOfName[1].trim();
-        handicap = calculateHandicap();
-    }
-
-    public abstract int calculateGross();
-
-    public abstract int calculateNett();
-
 
     public int getPosition() {
         return position;
@@ -59,9 +19,9 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-//    public String getName() {
-//        return firstName + " " + lastName;
-//    }
+    public String getFullName() {
+        return forename + " " + surname;
+    }
 
     public int getGross() {
         return gross;
@@ -71,19 +31,22 @@ public abstract class Golfer implements Comparable {
         return nett;
     }
 
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public String getLastName() {
-//        return lastName;
-//    }
-
     public int getHandicap() {
         return handicap;
     }
 
+    public void assignAttributes() {
+        String[] partsOfName = this.parts[1].split(",");
+        partsOfScore = this.parts[2].split(" ");
+        position = Integer.parseInt(parts[0]);
+        surname = partsOfName[0].trim();
+        forename = partsOfName[1].trim();
+        handicap = calculateHandicap();
+    }
 
+    public abstract int calculateGross();
+
+    public abstract int calculateNett();
 
     void split(String s) {
         this.parts = s.split("\t");
