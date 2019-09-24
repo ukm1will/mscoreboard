@@ -24,10 +24,6 @@ import java.util.List;
 
 @Controller
 public class FrontEndControllers {
-//    @RequestMapping("/urls")
-//    public String getURLs() {
-//        return "message.jsp";
-//    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/urls")
     public ModelAndView getURIs(HttpServletRequest request) {

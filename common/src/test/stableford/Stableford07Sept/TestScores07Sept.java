@@ -38,73 +38,71 @@ public class TestScores07Sept {
         assertEquals(52, competition.golfers.size());
     }
 
-//    @Test
-//    public void MikeShouldHaveCorrectData() throws Exception {
-//        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-//        competition.addResultsToCompetition(activeData);
-//        competition.addGolfersToCompetition();
-//        StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
-//        assertEquals("Mike Williams", mikeWilliams.getName());
-//        assertEquals(75, mikeWilliams.getGross());
-//        assertEquals(70, mikeWilliams.getNett());
-//        assertEquals(5, mikeWilliams.getHandicap());
-//        assertEquals(38, mikeWilliams.getPts());
-//    }
-//
-//
-//    @Test
-//    public void ShouldShowTomBeforeSort() throws Exception {
-//        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-//        competition.addResultsToCompetition(activeData);
-//        competition.addGolfersToCompetition();
-//        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
-//        assertEquals("Tom Trippett", tomTrippett.getName());
-//        assertEquals(27, tomTrippett.getPosition());
-//        assertEquals(81, tomTrippett.getGross());
-//        assertEquals(76, tomTrippett.getNett());
-//        assertEquals(5, tomTrippett.getHandicap());
-//        assertEquals(32, tomTrippett.getPts());
-//    }
-//
-//    @Test
-//    public void ShouldShowTomsPositionAfterSort() throws Exception {
-//        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-//        competition.addResultsToCompetition(activeData);
-//        competition.addGolfersToCompetition();
-//        Collections.sort(competition.golfers);
-//        competition.updateRankings();
-//        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
-//        assertEquals("Tom Trippett", tomTrippett.getName());
-//        assertEquals(13, tomTrippett.getPosition());
-//        assertEquals(81, tomTrippett.getGross());
-//        assertEquals(76, tomTrippett.getNett());
-//        assertEquals(5, tomTrippett.getHandicap());
-//        assertEquals(32, tomTrippett.getPts());
-//    }
-//
-//    @Test
-//    public void BeforeSortingCheckNames() throws Exception {
-//        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-//        competition.addResultsToCompetition(activeData);
-//        competition.addGolfersToCompetition();
-//        Golfer posOne = competition.golfers.get(0);
-//        Golfer posTwo = competition.golfers.get(1);
-//        assertEquals("Lance L. Heycock", posOne.getName());
-//        assertEquals("Gareth J Davies", posTwo.getName());
-//    }
-//
-//    @Test
-//    public void AfterSortingCheckNames() throws Exception {
-//        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
-//        competition.addResultsToCompetition(activeData);
-//        competition.addGolfersToCompetition();
-//        System.out.println(competition.golfers.toString());
-//        Collections.sort(competition.golfers);
-//        System.out.println(competition.golfers.toString());
-//        Golfer posOne = competition.golfers.get(0);
-//        Golfer posTwo = competition.golfers.get(1);
-//        assertEquals("James Graham", posOne.getName());
-//        assertEquals("Mike Williams", posTwo.getName());
-//    }
+    @Test
+    public void MikeShouldHaveCorrectData() throws Exception {
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        competition.addResultsToCompetition(activeData);
+        competition.addGolfersToCompetition();
+        StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
+        assertEquals("Mike Williams", mikeWilliams.getName());
+        assertEquals(75, mikeWilliams.getGross());
+        assertEquals(70, mikeWilliams.getNett());
+        assertEquals(5, mikeWilliams.getHandicap());
+        assertEquals(38, mikeWilliams.getPts());
+    }
+
+
+    @Test
+    public void ShouldShowTomBeforeSort() throws Exception {
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        competition.addResultsToCompetition(activeData);
+        competition.addGolfersToCompetition();
+        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        assertEquals("Tom Trippett", tomTrippett.getName());
+        assertEquals(27, tomTrippett.getPosition());
+        assertEquals(81, tomTrippett.getGross());
+        assertEquals(76, tomTrippett.getNett());
+        assertEquals(5, tomTrippett.getHandicap());
+        assertEquals(32, tomTrippett.getPts());
+    }
+
+    @Test
+    public void ShouldShowTomsPositionAfterSort() throws Exception {
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        competition.addResultsToCompetition(activeData);
+        competition.addGolfersToCompetition();
+        Collections.sort(competition.golfers);
+        competition.updateRankings();
+        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        assertEquals("Tom Trippett", tomTrippett.getName());
+        assertEquals(13, tomTrippett.getPosition());
+        assertEquals(81, tomTrippett.getGross());
+        assertEquals(76, tomTrippett.getNett());
+        assertEquals(5, tomTrippett.getHandicap());
+        assertEquals(32, tomTrippett.getPts());
+    }
+
+    @Test
+    public void BeforeSortingCheckNames() throws Exception {
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        competition.addResultsToCompetition(activeData);
+        competition.addGolfersToCompetition();
+        Golfer posOne = competition.golfers.get(0);
+        Golfer posTwo = competition.golfers.get(1);
+        assertEquals("Lance L. Heycock", posOne.getName());
+        assertEquals("Gareth J Davies", posTwo.getName());
+    }
+
+    @Test
+    public void AfterSortingCheckNames() throws Exception {
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        competition.addResultsToCompetition(activeData);
+        competition.addGolfersToCompetition();
+        Collections.sort(competition.golfers);
+        Golfer posOne = competition.golfers.get(0);
+        Golfer posTwo = competition.golfers.get(1);
+        assertEquals("James Graham", posOne.getName());
+        assertEquals("Mike Williams", posTwo.getName());
+    }
 
 }

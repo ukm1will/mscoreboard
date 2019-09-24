@@ -44,9 +44,9 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-//    public String getName() {
-//        return firstName + " " + lastName;
-//    }
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 
     public int getGross() {
         return gross;

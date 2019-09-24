@@ -71,15 +71,15 @@ public class Competition {
     private boolean firstCharOfStringIsDigit(String str) {
         return str.length() > 0 && Character.isDigit(str.charAt(0));
     }
-//
-//    public Golfer find(String name) {
-//        for (Golfer golfer : this.golfers) {
-//            if (golfer.getName().equals(name)) {
-//                return golfer;
-//            }
-//        }
-//        return null;
-//    }
+
+    public Golfer find(String name) {
+        for (Golfer golfer : this.golfers) {
+            if (golfer.getName().equals(name)) {
+                return golfer;
+            }
+        }
+        return null;
+    }
 
     public void updateRankings() {
         // After sorting, the position will no longer be accurate, therefore they need to be re-adjusted
