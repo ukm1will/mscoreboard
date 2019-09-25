@@ -4,7 +4,7 @@ import service.StringHelper;
 
 import java.util.List;
 
-public class CompetitionURL {
+public class CompetitionMetadata {
 
     private String dateOfCompetition;
     private String competitionTitle;
@@ -24,9 +24,9 @@ public class CompetitionURL {
         this.url = url;
     }
 
-    public static String toString(List<CompetitionURL> urls) {
+    public static String toString(List<CompetitionMetadata> urls) {
         StringBuilder sb = new StringBuilder();
-        for (CompetitionURL compUrl: urls) {
+        for (CompetitionMetadata compUrl: urls) {
             sb.append(compUrl.toString());
         }
         return sb.toString();
@@ -34,15 +34,15 @@ public class CompetitionURL {
 
     @Override
     public String toString() {
-        return "CompetitionURL{" +
+        return "CompetitionMetadata{" +
                 "dateOfCompetition='" + dateOfCompetition + '\'' +
                 ", competitionTitle='" + competitionTitle + '\'' +
                 ", url='" + url + '\'' +
-                "}\n";
+                "}";
 
 
     }
-    CompetitionURL(String str) {
+    CompetitionMetadata(String str) {
         this.dateOfCompetition = StringHelper.removeAfter(str, "<a");
         String viewID = StringHelper.splitBeforeAndAfter(str, "View=", "'>");
         this.competitionTitle = StringHelper.splitBeforeAndAfter(str, "'>", "</a>");
@@ -50,7 +50,7 @@ public class CompetitionURL {
         this.url = urlPath + viewID;
     }
 
-    public CompetitionURL() {
+    public CompetitionMetadata() {
     }
 
     public String getDateOfCompetition() {

@@ -1,23 +1,15 @@
 package controllers;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import enums.DataResponseType;
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
-import models.Competition;
-import models.CompetitionURL;
-import models.Golfer;
-import models.UrlConverter;
+import models.CompetitionMetadata;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import service.StringHelper;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +23,10 @@ public class FrontEndControllers {
         RestTemplate restTemplate = new RestTemplate();
         String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<CompetitionURL>>() {}.getType();
-        List<CompetitionURL> urls = gson.fromJson(json, listType);
+        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {}.getType();
+        List<CompetitionMetadata> urls = gson.fromJson(json, listType);
 
-        for (CompetitionURL url: urls) {
+        for (CompetitionMetadata url: urls) {
             System.out.println(url.toString());
         }
 
@@ -51,7 +43,7 @@ public class FrontEndControllers {
 //    }
 //
 //    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/tests.json")
-//    public List<Golfer> getCompetition(CompetitionURL competitionURL) throws Exception {
+//    public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
 //        String url = competitionURL.getUrl();
 //        String dataSource = getDataSource(url, DataResponseType.TEXT);
 //        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
@@ -62,7 +54,7 @@ public class FrontEndControllers {
 //    }
 //
 //    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/tests.json")
-//    public List<CompetitionURL> getMasterScoreboardHomePage() throws IOException {
+//    public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
 //        String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
 //        UrlConverter urlConverter = new UrlConverter(dataSource);
 //        urlConverter.convertRawDataToArrayList();

@@ -4,11 +4,10 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import enums.DataResponseType;
 import models.Competition;
-import models.CompetitionURL;
+import models.CompetitionMetadata;
 import models.Golfer;
 import models.UrlConverter;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import service.StringHelper;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class BackendController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
-    public List<Golfer> getCompetition(CompetitionURL competitionURL) throws Exception {
+    public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
         String url = competitionURL.getUrl();
         String dataSource = getDataSource(url, DataResponseType.TEXT);
         dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
@@ -64,7 +63,7 @@ public class BackendController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
-    public List<CompetitionURL> getMasterScoreboardHomePage() throws IOException {
+    public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
         String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
         UrlConverter urlConverter = new UrlConverter(dataSource);
         urlConverter.convertRawDataToArrayList();

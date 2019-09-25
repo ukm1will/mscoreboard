@@ -2,7 +2,7 @@ package tests.json;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
-import models.CompetitionURL;
+import models.CompetitionMetadata;
 import models.StablefordGolfer;
 import org.junit.Test;
 
@@ -32,8 +32,8 @@ public class JsonConversionTests {
                 "]";
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<CompetitionURL>>() {}.getType();
-        List<CompetitionURL> urls = gson.fromJson(json, listType);
+        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {}.getType();
+        List<CompetitionMetadata> urls = gson.fromJson(json, listType);
         assertEquals(2, urls.size());
     }
 

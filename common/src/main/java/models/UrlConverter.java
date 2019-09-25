@@ -13,11 +13,11 @@ public class UrlConverter {
     private List<String> rawList;
     private List<String> concatenatedList;
 
-    public List<CompetitionURL> getCompetitionURLS() {
+    public List<CompetitionMetadata> getCompetitionURLS() {
         return competitionURLS;
     }
 
-    private List<CompetitionURL> competitionURLS;
+    private List<CompetitionMetadata> competitionURLS;
 
     public List<String> getConcatenatedList() {
         return concatenatedList;
@@ -29,7 +29,7 @@ public class UrlConverter {
 
     public String toStringCompetitionURLList() {
         StringBuilder sb = new StringBuilder();
-        for (CompetitionURL item : competitionURLS) {
+        for (CompetitionMetadata item : competitionURLS) {
            sb.append(String.format("%s %s %s\n", item.getDateOfCompetition(), item.getUrl(), item.getCompetitionTitle()));
         }
         return sb.toString();
@@ -75,7 +75,7 @@ public class UrlConverter {
     public void createListofUrls() {
         competitionURLS = new ArrayList<>();
         for (String item: this.concatenatedList) {
-            CompetitionURL competitionURL = new CompetitionURL(item);
+            CompetitionMetadata competitionURL = new CompetitionMetadata(item);
             competitionURLS.add(competitionURL);
         }
     }
