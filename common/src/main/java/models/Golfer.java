@@ -62,14 +62,13 @@ public abstract class Golfer implements Comparable {
     public int compareTo(Object obj) {
         Golfer that = (Golfer) obj;
         if (Integer.compare(this.gross, that.gross) == 0) {
-//            if (this.lastName.compareTo(that.lastName) == 0) {
-//                return this.firstName.compareTo(that.firstName);
-//            } else {
-//                return this.lastName.compareTo(that.lastName);
-//            }
+            if (this.surname.compareTo(that.surname) == 0) {
+                return this.forename.compareTo(that.forename);
+            } else {
+                return this.surname.compareTo(that.surname);
+            }
         } else {
             return Integer.compare(this.gross, that.gross);
         }
-        return 0;
     }
 }

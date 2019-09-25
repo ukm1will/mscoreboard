@@ -1,11 +1,9 @@
-package medal.NeathCup2019;
+package tests.medal.NeathCup2019;
 
-import data.medal.ClubMedal08Aug2019;
 import data.medal.NeathCup2019;
 import models.Competition;
 import models.Golfer;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import service.StringHelper;
 
@@ -74,8 +72,8 @@ public class TestScoresNeathCup2019 {
         competition.addGolfersToCompetition();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        Assert.assertEquals("Euan Edwards", posOne.getName());
-        Assert.assertEquals("Mike Edwards", posTwo.getName());
+        Assert.assertEquals("Euan Edwards", posOne.getFullName());
+        Assert.assertEquals("Mike Edwards", posTwo.getFullName());
     }
 
     @Test
@@ -86,8 +84,8 @@ public class TestScoresNeathCup2019 {
         Collections.sort(competition.golfers);
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        Assert.assertEquals("R. A. Evans", posOne.getName());
-        Assert.assertEquals("Jonathan R Bevan", posTwo.getName());
+        Assert.assertEquals("R. A. Evans", posOne.getFullName());
+        Assert.assertEquals("Jonathan R Bevan", posTwo.getFullName());
     }
 
 }

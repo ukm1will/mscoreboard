@@ -1,17 +1,17 @@
-package json;
+package tests.json;
 
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
 import models.CompetitionURL;
-import models.Golfer;
 import models.StablefordGolfer;
 import org.junit.Test;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class JsonConversionTests {
 
@@ -34,7 +34,7 @@ public class JsonConversionTests {
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<CompetitionURL>>() {}.getType();
         List<CompetitionURL> urls = gson.fromJson(json, listType);
-        System.out.println(CompetitionURL.toString(urls));
+        assertEquals(2, urls.size());
     }
 
 
@@ -42,38 +42,38 @@ public class JsonConversionTests {
     public void ShouldReturnListOfStablefordGolfersFromJsonString() throws IOException {
 
         String json = "[" +
-                " {\n" +
-                "        \"position\": 2,\n" +
-                "        \"firstName\": \"Gareth J\",\n" +
-                "        \"lastName\": \"Davies\",\n" +
-                "        \"gross\": 78,\n" +
-                "        \"nett\": 68,\n" +
-                "        \"handicap\": 10,\n" +
-                "        \"pts\": 40\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"position\": 3,\n" +
-                "        \"firstName\": \"Chris\",\n" +
-                "        \"lastName\": \"Holwill\",\n" +
-                "        \"gross\": 79,\n" +
-                "        \"nett\": 69,\n" +
-                "        \"handicap\": 10,\n" +
-                "        \"pts\": 39\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"position\": 4,\n" +
-                "        \"firstName\": \"Ceri\",\n" +
-                "        \"lastName\": \"Dawes\",\n" +
-                "        \"gross\": 84,\n" +
-                "        \"nett\": 70,\n" +
-                "        \"handicap\": 14,\n" +
-                "        \"pts\": 38\n" +
+                " {" +
+                "        \"position\": 2," +
+                "        \"firstName\": \"Gareth J\"," +
+                "        \"lastName\": \"Davies\"," +
+                "        \"gross\": 78," +
+                "        \"nett\": 68," +
+                "        \"handicap\": 10," +
+                "        \"pts\": 40" +
+                "    }," +
+                "    {" +
+                "        \"position\": 3," +
+                "        \"firstName\": \"Chris\"," +
+                "        \"lastName\": \"Holwill\"," +
+                "        \"gross\": 79," +
+                "        \"nett\": 69," +
+                "        \"handicap\": 10," +
+                "        \"pts\": 39" +
+                "    }," +
+                "    {" +
+                "        \"position\": 4," +
+                "        \"firstName\": \"Ceri\"," +
+                "        \"lastName\": \"Dawes\"," +
+                "        \"gross\": 84," +
+                "        \"nett\": 70," +
+                "        \"handicap\": 14," +
+                "        \"pts\": 38" +
                 "    }" +
                 "]";
 
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
         List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
-        System.out.println(StablefordGolfer.toString(stablefordGolfers));
+        assertEquals(3, stablefordGolfers.size());
     }
 }

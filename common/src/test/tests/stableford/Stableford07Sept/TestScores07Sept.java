@@ -1,7 +1,6 @@
-package stableford.Stableford07Sept;
+package tests.stableford.Stableford07Sept;
 
 import data.stableford.Stableford_07_SEP;
-import junit.framework.TestCase;
 import models.Competition;
 import models.Golfer;
 import models.StablefordGolfer;
@@ -44,7 +43,7 @@ public class TestScores07Sept {
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
-        assertEquals("Mike Williams", mikeWilliams.getName());
+        assertEquals("Mike Williams", mikeWilliams.getFullName());
         assertEquals(75, mikeWilliams.getGross());
         assertEquals(70, mikeWilliams.getNett());
         assertEquals(5, mikeWilliams.getHandicap());
@@ -58,7 +57,7 @@ public class TestScores07Sept {
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
-        assertEquals("Tom Trippett", tomTrippett.getName());
+        assertEquals("Tom Trippett", tomTrippett.getFullName());
         assertEquals(27, tomTrippett.getPosition());
         assertEquals(81, tomTrippett.getGross());
         assertEquals(76, tomTrippett.getNett());
@@ -74,7 +73,7 @@ public class TestScores07Sept {
         Collections.sort(competition.golfers);
         competition.updateRankings();
         StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
-        assertEquals("Tom Trippett", tomTrippett.getName());
+        assertEquals("Tom Trippett", tomTrippett.getFullName());
         assertEquals(13, tomTrippett.getPosition());
         assertEquals(81, tomTrippett.getGross());
         assertEquals(76, tomTrippett.getNett());
@@ -89,8 +88,8 @@ public class TestScores07Sept {
         competition.addGolfersToCompetition();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        assertEquals("Lance L. Heycock", posOne.getName());
-        assertEquals("Gareth J Davies", posTwo.getName());
+        assertEquals("Lance L. Heycock", posOne.getFullName());
+        assertEquals("Gareth J Davies", posTwo.getFullName());
     }
 
     @Test
@@ -101,8 +100,8 @@ public class TestScores07Sept {
         Collections.sort(competition.golfers);
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        assertEquals("James Graham", posOne.getName());
-        assertEquals("Mike Williams", posTwo.getName());
+        assertEquals("James Graham", posOne.getFullName());
+        assertEquals("Mike Williams", posTwo.getFullName());
     }
 
 }

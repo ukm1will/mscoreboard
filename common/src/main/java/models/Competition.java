@@ -38,11 +38,9 @@ public class Competition {
     public void addGolfersToCompetition() throws Exception {
         if (scoringSystem == ScoringSystem.STABLEFORD) {
             addStablefordGolfers();
-        }
-        else if(scoringSystem == ScoringSystem.MEDAL) {
+        } else if (scoringSystem == ScoringSystem.MEDAL) {
             addMedalGolfers();
-        }
-        else
+        } else
             throw new UnsupportedOperationException("Trouble at mill in Competition");
     }
 
@@ -63,12 +61,9 @@ public class Competition {
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
-                if(golfers.size() < 3) {
-                    golfers.add(golfer);
-                }
+                golfers.add(golfer);
             }
         }
-        int bp = 43;
     }
 
     private boolean firstCharOfStringIsDigit(String str) {
@@ -76,11 +71,11 @@ public class Competition {
     }
 
     public Golfer find(String name) {
-//        for (Golfer golfer : this.golfers) {
-//            if (golfer.getName().equals(name)) {
-//                return golfer;
-//            }
-//        }
+        for (Golfer golfer : this.golfers) {
+            if (golfer.getFullName().equals(name)) {
+                return golfer;
+            }
+        }
         return null;
     }
 

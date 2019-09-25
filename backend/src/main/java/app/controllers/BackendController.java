@@ -75,28 +75,6 @@ public class BackendController {
         return urlConverter.getCompetitionURLS();
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/view/{viewId}", produces = "application/json")
-//    public CompetitionURL listNotes(@RequestParam("viewId") int viewId) {
-//        ModelAndView mv = new ModelAndView();
-//        mv.addObject("viewId", viewId);
-//        mv.setViewName("message.jsp");
-//        return mv;
-//    }
-//
-//    @RequestMapping(value = "/ex/foos/{id}", method = GET)
-//    @ResponseBody
-//    public String getFoosBySimplePathWithPathVariable(
-//            @PathVariable("id") long id) {
-//        return "Get a specific Foo with id=" + id;
-//    }
-//
-//
-
-
-
-
-
-
 
     private String getDataSource(String url, DataResponseType dataResponseType) throws IOException {
         WebClient webClient = autoLogin(url, password);

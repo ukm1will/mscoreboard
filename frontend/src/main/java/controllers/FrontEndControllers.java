@@ -50,7 +50,7 @@ public class FrontEndControllers {
 //        return "Your backend is available";
 //    }
 //
-//    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
+//    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/tests.json")
 //    public List<Golfer> getCompetition(CompetitionURL competitionURL) throws Exception {
 //        String url = competitionURL.getUrl();
 //        String dataSource = getDataSource(url, DataResponseType.TEXT);
@@ -61,7 +61,7 @@ public class FrontEndControllers {
 //        return competition.golfers;
 //    }
 //
-//    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
+//    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/tests.json")
 //    public List<CompetitionURL> getMasterScoreboardHomePage() throws IOException {
 //        String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
 //        UrlConverter urlConverter = new UrlConverter(dataSource);
