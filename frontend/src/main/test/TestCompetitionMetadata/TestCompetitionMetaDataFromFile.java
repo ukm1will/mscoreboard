@@ -1,12 +1,8 @@
 package TestCompetitionMetadata;
 
 import data.URLS_25_SEP;
-import models.CompetitionMetadata;
 import models.UrlConverter;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -16,18 +12,43 @@ public class TestCompetitionMetaDataFromFile {
     private final UrlConverter urlConverter = new UrlConverter(currentDataFile);
 
     @Test
-    public void ShouldShowListOfCompetitionMetadata() {
-        List<CompetitionMetadata> competitionMetadataList;
+    public void ShouldConvertStringOfHTMLCodeToArrayList() {
+        urlConverter.convertRawDataToArrayList();
+        assertEquals(58, urlConverter.getRawList().size());
+    }
+
+    @Test
+    public void ShouldRemoveUnwantedRowsFromList() {
+        urlConverter.convertRawDataToArrayList();
+        urlConverter.removeUnwantedRowsFromList();
+        assertEquals(20, urlConverter.getRawList().size());
+    }
+
+    @Test
+    public void ShouldExtractCompetitionData() {
+        urlConverter.convertRawDataToArrayList();
+        urlConverter.removeUnwantedRowsFromList();
+        urlConverter.extractCompetitionData();
+        assertEquals(20, urlConverter.getRawList().size());
+    }
+
+    @Test
+    public void ShouldConcatenateList() {
+        urlConverter.convertRawDataToArrayList();
+        urlConverter.removeUnwantedRowsFromList();
+        urlConverter.extractCompetitionData();
+        urlConverter.concatenateList();
+        assertEquals(20, urlConverter.getRawList().size());
+    }
+
+    @Test
+    public void ShouldCreateListofUrls() {
         urlConverter.convertRawDataToArrayList();
         urlConverter.removeUnwantedRowsFromList();
         urlConverter.extractCompetitionData();
         urlConverter.concatenateList();
         urlConverter.createListofUrls();
-        competitionMetadataList = urlConverter.getCompetitionURLS();
-        assertEquals(10, competitionMetadataList.size());
-        for (CompetitionMetadata cmd : competitionMetadataList) {
-            System.out.println(cmd.toString());
-        }
+        assertEquals(10, urlConverter.getCompetitionMetadata().size());
     }
 }
 

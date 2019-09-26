@@ -71,7 +71,7 @@ public class BackendController {
         urlConverter.extractCompetitionData();
         urlConverter.concatenateList();
         urlConverter.createListofUrls();
-        return urlConverter.getCompetitionURLS();
+        return urlConverter.getCompetitionMetadata();
     }
 
 

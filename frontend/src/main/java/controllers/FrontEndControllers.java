@@ -62,7 +62,7 @@ public class FrontEndControllers {
 //        urlConverter.extractCompetitionData();
 //        urlConverter.concatenateList();
 //        urlConverter.createListofUrls();
-//        return urlConverter.getCompetitionURLS();
+//        return urlConverter.getCompetitionMetadata();
 //    }
 //
 //    private String getDataSource(String url, DataResponseType dataResponseType) throws IOException {
