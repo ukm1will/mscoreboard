@@ -9,6 +9,7 @@ import models.Golfer;
 import models.UrlConverter;
 import org.springframework.web.bind.annotation.*;
 import service.StringHelper;
+import models.Colourise;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +28,13 @@ public class BackendController {
     public String health() {
         return "Your backend is available";
     }
+
+//    @RequestMapping(value = "/views/{id}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String getViews(@PathVariable("id") final int orderId) {
+//        return "Order ID: " + orderId;
+//    }
+
 
     @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
     public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
@@ -49,6 +57,39 @@ public class BackendController {
         competition.addGolfersToCompetition();
         return competition.golfers;
     }
+
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/views/{id}", produces = "application/json")
+    @ResponseBody
+    public List<Golfer> getTheView(@PathVariable("id") final int orderId) throws Exception {
+        Colourise.out("OrderID: " + orderId);
+        String dataSource = getDataSource("http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + orderId, DataResponseType.TEXT);
+        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
+        Competition competition = new Competition(dataSource);
+        competition.addResultsToCompetition(dataSource);
+        competition.addGolfersToCompetition();
+        return competition.golfers;
+    }
+
+
+//
+//
+//
+//    @RequestMapping(, value = "/viewcomp/{id}", produces = "application/json")
+//    public List<Golfer> getCompetition(@RequestParam(value = "id") Integer id) throws Exception {
+//        String dataSource = getDataSource("http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=5315", DataResponseType.TEXT);
+//        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
+//        Competition competition = new Competition(dataSource);
+//        competition.addResultsToCompetition(dataSource);
+//        competition.addGolfersToCompetition();
+//        return competition.golfers;
+//    }
+
+
+
+
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/view/{viewId}", produces = "application/json")
     public List<Golfer> getCompetitionFromView(@RequestParam("viewId") int viewId) throws Exception {
