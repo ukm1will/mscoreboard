@@ -15,13 +15,13 @@
     <tr>
         <th>Date</th>
         <th>Competition</th>
-        <th></th>
-        <th></th>
+        <th>ViewId</th>
     </tr>
     <c:forEach var="url" items="${urls}">
         <tr>
             <td>${url.getDateOfCompetition()}</td>
             <td>${url.getCompetitionTitle()}</td>
+            <td>${url.getViewId()}</td>
         </tr>
     </c:forEach>
 </table>

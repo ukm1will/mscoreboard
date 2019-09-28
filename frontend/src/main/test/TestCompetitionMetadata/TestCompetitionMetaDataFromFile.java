@@ -1,8 +1,12 @@
 package TestCompetitionMetadata;
 
 import data.URLS_25_SEP;
+import models.CompetitionMetadata;
 import models.UrlConverter;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -50,5 +54,19 @@ public class TestCompetitionMetaDataFromFile {
         urlConverter.createListofUrls();
         assertEquals(10, urlConverter.getCompetitionMetadata().size());
     }
-}
 
+
+    @Test
+    public void ShouldHaveSecondCompetitionInArrayListCorrect() {
+        List<CompetitionMetadata> competitionMetadata = new ArrayList<>();
+        urlConverter.convertRawDataToArrayList();
+        urlConverter.removeUnwantedRowsFromList();
+        urlConverter.extractCompetitionData();
+        urlConverter.concatenateList();
+        urlConverter.createListofUrls();
+        CompetitionMetadata competitionMetadataItem = urlConverter.getCompetitionMetadata().get(1);
+        assertEquals("Club Stableford", competitionMetadataItem.getCompetitionTitle());
+        assertEquals("Sun 22 Sep 19", competitionMetadataItem.getDateOfCompetition());
+        assertEquals(5336, competitionMetadataItem.getViewId());
+    }
+}

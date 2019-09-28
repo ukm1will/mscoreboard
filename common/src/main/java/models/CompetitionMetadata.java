@@ -44,10 +44,10 @@ public class CompetitionMetadata {
     }
     CompetitionMetadata(String str) {
         this.dateOfCompetition = StringHelper.removeAfter(str, "<a");
-        String viewID = StringHelper.splitBeforeAndAfter(str, "View=", "'>");
+        this.viewId = Integer.parseInt(StringHelper.splitBeforeAndAfter(str, "View=", "'>"));
         this.competitionTitle = StringHelper.splitBeforeAndAfter(str, "'>", "</a>");
         String urlPath = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=";
-        this.url = urlPath + viewID;
+        this.url = urlPath + viewId;
     }
 
     public CompetitionMetadata() {
@@ -64,4 +64,10 @@ public class CompetitionMetadata {
     public String getUrl() {
         return url;
     }
+
+    public int getViewId() {
+        return this.viewId;
+    }
 }
+
+// TODO: tidy up this file, check if we need setDate etc, constructor
