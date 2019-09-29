@@ -3,10 +3,7 @@ package controllers;
 import enums.DataResponseType;
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
-import models.Colourise;
-import models.Competition;
-import models.CompetitionMetadata;
-import models.Golfer;
+import models.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,18 +43,13 @@ public class FrontEndControllers {
     public ModelAndView doNothing() {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
-        String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
+        String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
+
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {
-        }.getType();
-        List<CompetitionMetadata> urls = gson.fromJson(json, listType);
-
-        for (CompetitionMetadata url : urls) {
-            System.out.println(url.toString());
-        }
-
+        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
+        List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
         mv.setViewName("message.jsp");
-        mv.addObject("urls", urls);
+        mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
     }
 }

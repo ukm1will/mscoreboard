@@ -1,16 +1,22 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ukmiwill
-  Date: 22/09/19
-  Time: 00:59
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+
 <html>
 <head>
     <title>Swansea Bay Golf Club</title>
 </head>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <body>
-    I'm here
+
+<table class="w3-table-all w3-hoverable">
+    <c:forEach var="golfer" items="${stablefordGolfers}">
+        <tr>
+            <td>${golfer.getPts()}</td>
+        </tr>
+    </c:forEach>
+</table>
+
 </body>
 </html>
