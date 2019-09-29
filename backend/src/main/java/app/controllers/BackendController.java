@@ -20,21 +20,10 @@ import static service.LoginService.autoLogin;
 @RestController
 public class BackendController {
 
-    private final String password = "swanseabay";
-    private final String msHomePage = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
-    private final String backend = "http://localhost:9090";
-
     @RequestMapping(method = RequestMethod.GET, value = "/health")
     public String health() {
         return "Your backend is available";
     }
-
-//    @RequestMapping(value = "/views/{id}", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String getViews(@PathVariable("id") final int orderId) {
-//        return "Order ID: " + orderId;
-//    }
-
 
     @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
     public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
@@ -48,63 +37,21 @@ public class BackendController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/singlecompetition", produces = "application/json")
-    public List<Golfer> getSingleCompetition() throws Exception {
-        String dataSource = getDataSource("http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=5315", DataResponseType.TEXT);
-        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
-        Competition competition = new Competition(dataSource);
-        competition.addResultsToCompetition(dataSource);
-        competition.addGolfersToCompetition();
-        return competition.golfers;
-    }
-
-
-
-    @RequestMapping(method = RequestMethod.GET, value = "/views/{id}", produces = "application/json")
-    @ResponseBody
-    public List<Golfer> getTheView(@PathVariable("id") final int orderId) throws Exception {
-        Colourise.out("OrderID: " + orderId);
-        String dataSource = getDataSource("http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + orderId, DataResponseType.TEXT);
-        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
-        Competition competition = new Competition(dataSource);
-        competition.addResultsToCompetition(dataSource);
-        competition.addGolfersToCompetition();
-        return competition.golfers;
-    }
-
-
-//
-//
-//
-//    @RequestMapping(, value = "/viewcomp/{id}", produces = "application/json")
-//    public List<Golfer> getCompetition(@RequestParam(value = "id") Integer id) throws Exception {
-//        String dataSource = getDataSource("http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=5315", DataResponseType.TEXT);
-//        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
-//        Competition competition = new Competition(dataSource);
-//        competition.addResultsToCompetition(dataSource);
-//        competition.addGolfersToCompetition();
-//        return competition.golfers;
-//    }
-
-
-
-
-
-
-    @RequestMapping(method = RequestMethod.GET, value = "/view/{viewId}", produces = "application/json")
-    public List<Golfer> getCompetitionFromView(@RequestParam("viewId") int viewId) throws Exception {
-        String url = backend + viewId;
+    @RequestMapping(method = RequestMethod.GET, value = "/views/{viewId}", produces = "application/json")
+    public List<Golfer> getView(@PathVariable("viewId") final int viewId) throws Exception {
+        String url = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + viewId;
         String dataSource = getDataSource(url, DataResponseType.TEXT);
+        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
         Competition competition = new Competition(dataSource);
         competition.addResultsToCompetition(dataSource);
         competition.addGolfersToCompetition();
         return competition.golfers;
     }
-
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
     public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
+        String msHomePage = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
         String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
         UrlConverter urlConverter = new UrlConverter(dataSource);
         urlConverter.convertRawDataToArrayList();
@@ -117,6 +64,7 @@ public class BackendController {
 
 
     private String getDataSource(String url, DataResponseType dataResponseType) throws IOException {
+        String password = "swanseabay";
         WebClient webClient = autoLogin(url, password);
         HtmlPage page = webClient.getPage(url);
         return dataResponseType == DataResponseType.HTML ? page.getWebResponse().getContentAsString() : page.asText();
