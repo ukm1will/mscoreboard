@@ -43,9 +43,21 @@ public class FrontEndControllers {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/foobar")
-    public ModelAndView getCompetition()  {
+    public ModelAndView doNothing() {
         ModelAndView mv = new ModelAndView();
+        RestTemplate restTemplate = new RestTemplate();
+        String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {
+        }.getType();
+        List<CompetitionMetadata> urls = gson.fromJson(json, listType);
+
+        for (CompetitionMetadata url : urls) {
+            System.out.println(url.toString());
+        }
+
         mv.setViewName("message.jsp");
+        mv.addObject("urls", urls);
         return mv;
     }
 }

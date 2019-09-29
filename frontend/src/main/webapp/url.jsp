@@ -22,7 +22,7 @@
             <td>${url.getDateOfCompetition()}</td>
             <td>${url.getCompetitionTitle()}</td>
             <td>${url.getViewId()}</td>
-            <td><a href="/foobar"> Get user details</a></td>
+            <td><a href="/foobar/foo"> Get user details</a></td>
         </tr>
     </c:forEach>
 </table>
