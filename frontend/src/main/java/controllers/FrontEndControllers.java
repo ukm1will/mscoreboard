@@ -1,13 +1,19 @@
 package controllers;
 
+import enums.DataResponseType;
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
+import models.Colourise;
+import models.Competition;
 import models.CompetitionMetadata;
+import models.Golfer;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import service.StringHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Type;
@@ -18,15 +24,16 @@ import java.util.List;
 public class FrontEndControllers {
 
     @RequestMapping(method = RequestMethod.GET, value = "/urls")
-    public ModelAndView getURIs(HttpServletRequest request) {
+    public ModelAndView getURIs() {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
         String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {
+        }.getType();
         List<CompetitionMetadata> urls = gson.fromJson(json, listType);
 
-        for (CompetitionMetadata url: urls) {
+        for (CompetitionMetadata url : urls) {
             System.out.println(url.toString());
         }
 
@@ -34,7 +41,30 @@ public class FrontEndControllers {
         mv.addObject("urls", urls);
         return mv;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/foobar")
+    public ModelAndView getCompetition()  {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("message.jsp");
+        return mv;
+    }
 }
+//
+//    @RequestMapping(method = RequestMethod.GET, value = "/views/{viewId}", produces = "application/json")
+//    public List<Golfer> getView(@PathVariable("viewId") final int viewId) throws Exception {
+//        String url = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + viewId;
+//        String dataSource = getDataSource(url, DataResponseType.TEXT);
+//        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
+//        Competition competition = new Competition(dataSource);
+//        competition.addResultsToCompetition(dataSource);
+//        competition.addGolfersToCompetition();
+//        return competition.golfers;
+//    }
+//
+
+
+
+
 
 
 //    @RequestMapping(method = RequestMethod.GET, value = "/health")
