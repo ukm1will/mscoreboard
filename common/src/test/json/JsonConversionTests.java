@@ -50,7 +50,7 @@ public class JsonConversionTests {
     }
 
     @Test
-    public void ShouldConvertJSONToListOfGolfers() {
+    public void ShouldConvertJSONToListOfStablefordGolfers() {
         String json = "[" +
                 "    {" +
                 "        \"gross\": 80," +
@@ -79,15 +79,15 @@ public class JsonConversionTests {
 
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
-        List<Golfer> golfers = gson.fromJson(json, listType);
-        Golfer golfer = golfers.get(0);
+        List<StablefordGolfer> golfers = gson.fromJson(json, listType);
+        StablefordGolfer golfer = golfers.get(0);
 
         assertEquals(3, golfers.size());
         assertEquals(1, golfer.getPosition());
         assertEquals("Lance L. Heycock", golfer.getFullName());
         assertEquals(80, golfer.getGross());
         assertEquals(68, golfer.getNett());
+        assertEquals(40, golfer.getPts());
         assertEquals(12, golfer.getHandicap());
     }
 }
-

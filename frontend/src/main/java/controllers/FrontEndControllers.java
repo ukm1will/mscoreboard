@@ -44,15 +44,10 @@ public class FrontEndControllers {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
         String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
-
         Gson gson = new Gson();
-
         Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
         List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
-
-
-
-        mv.setViewName("message.jsp");
+        mv.setViewName("stableford.jsp");
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
     }

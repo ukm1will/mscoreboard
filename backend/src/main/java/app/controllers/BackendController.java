@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import service.StringHelper;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import static service.LoginService.autoLogin;
@@ -44,6 +45,7 @@ public class BackendController {
         Competition competition = new Competition(dataSource);
         competition.addResultsToCompetition(dataSource);
         competition.addGolfersToCompetition();
+        Collections.sort(competition.golfers);
         return competition.golfers;
     }
 

@@ -1,4 +1,4 @@
-package stableford.Stableford07Sept;
+package stableford.Stableford07Sept5315;
 
 import data.stableford.Stableford_07_SEP;
 import models.Competition;
