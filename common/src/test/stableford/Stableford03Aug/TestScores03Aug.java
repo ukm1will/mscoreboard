@@ -1,4 +1,4 @@
-package tests.stableford.Stableford03Aug;
+package stableford.Stableford03Aug;
 
 import data.stableford.Stableford_03_AUG;
 import junit.framework.TestCase;

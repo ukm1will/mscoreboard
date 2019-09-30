@@ -1,5 +1,9 @@
 package models;
 
+import org.apache.commons.codec.binary.StringUtils;
+
+import java.util.Objects;
+
 public abstract class Golfer implements Comparable {
 
     protected String[] partsOfScore;
@@ -9,6 +13,7 @@ public abstract class Golfer implements Comparable {
     private int position;
     private String forename;
     private String surname;
+    private String fullName;
     private String[] parts;
 
     public int getPosition() {
@@ -19,8 +24,15 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-    public String getFullName() {
-        return forename + " " + surname;
+    @Override
+    public String toString() {
+        return "Golfer{" +
+                "gross=" + gross +
+                ", nett=" + nett +
+                ", handicap=" + handicap +
+                ", position=" + position +
+                ", fullName='" + fullName + '\'' +
+                '}';
     }
 
     public int getGross() {
@@ -42,6 +54,7 @@ public abstract class Golfer implements Comparable {
         surname = partsOfName[0].trim();
         forename = partsOfName[1].trim();
         handicap = calculateHandicap();
+        fullName = forename + ' ' + surname;
     }
 
     public abstract int calculateGross();
@@ -70,5 +83,9 @@ public abstract class Golfer implements Comparable {
         } else {
             return Integer.compare(this.gross, that.gross);
         }
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 }

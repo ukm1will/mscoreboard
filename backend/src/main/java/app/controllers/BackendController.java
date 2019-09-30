@@ -6,10 +6,9 @@ import enums.DataResponseType;
 import models.Competition;
 import models.CompetitionMetadata;
 import models.Golfer;
-import models.UrlConverter;
+import models.HTMLToCompetitionMetaDataConverter;
 import org.springframework.web.bind.annotation.*;
 import service.StringHelper;
-import models.Colourise;
 
 import java.io.IOException;
 import java.util.List;
@@ -53,12 +52,12 @@ public class BackendController {
     public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
         String msHomePage = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
         String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
-        UrlConverter urlConverter = new UrlConverter(dataSource);
+        HTMLToCompetitionMetaDataConverter urlConverter = new HTMLToCompetitionMetaDataConverter(dataSource);
         urlConverter.convertRawDataToArrayList();
         urlConverter.removeUnwantedRowsFromList();
         urlConverter.extractCompetitionData();
         urlConverter.concatenateList();
-        urlConverter.createListofUrls();
+        urlConverter.createListofCompetitionMetaData();
         return urlConverter.getCompetitionMetadata();
     }
 

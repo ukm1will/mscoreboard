@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UrlConverter {
+public class HTMLToCompetitionMetaDataConverter {
 
     private final List<String> itemsToRemove = new ArrayList<>(Arrays.asList("<tr>", "</tr>", "</th>", "img src", "colspan"));
     private String rawData;
@@ -23,7 +23,7 @@ public class UrlConverter {
         return concatenatedList;
     }
 
-    public UrlConverter(String rawData) {
+    public HTMLToCompetitionMetaDataConverter(String rawData) {
         this.rawData = rawData;
     }
 
@@ -94,11 +94,11 @@ public class UrlConverter {
     }
 
 
-    /** createListofUrls
+    /** createListofCompetitionMetaData
      *  Convert string to a CompetitionMetaData object that can ultimately be passed to a view.
      */
 
-    public void createListofUrls() {
+    public void createListofCompetitionMetaData() {
         competitionMetadata = new ArrayList<>();
         for (String item: this.concatenatedList) {
             CompetitionMetadata competitionMetadata = new CompetitionMetadata(item);

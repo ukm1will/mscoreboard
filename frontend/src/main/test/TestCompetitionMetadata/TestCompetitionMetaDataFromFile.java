@@ -2,7 +2,7 @@ package TestCompetitionMetadata;
 
 import data.URLS_25_SEP;
 import models.CompetitionMetadata;
-import models.UrlConverter;
+import models.HTMLToCompetitionMetaDataConverter;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 public class TestCompetitionMetaDataFromFile {
 
     private final String currentDataFile = URLS_25_SEP.WHOLE_PAGE;
-    private final UrlConverter urlConverter = new UrlConverter(currentDataFile);
+    private final HTMLToCompetitionMetaDataConverter urlConverter = new HTMLToCompetitionMetaDataConverter(currentDataFile);
 
     @Test
     public void ShouldConvertStringOfHTMLCodeToArrayList() {
@@ -51,10 +51,9 @@ public class TestCompetitionMetaDataFromFile {
         urlConverter.removeUnwantedRowsFromList();
         urlConverter.extractCompetitionData();
         urlConverter.concatenateList();
-        urlConverter.createListofUrls();
+        urlConverter.createListofCompetitionMetaData();
         assertEquals(10, urlConverter.getCompetitionMetadata().size());
     }
-
 
     @Test
     public void ShouldHaveSecondCompetitionInArrayListCorrect() {
@@ -63,7 +62,7 @@ public class TestCompetitionMetaDataFromFile {
         urlConverter.removeUnwantedRowsFromList();
         urlConverter.extractCompetitionData();
         urlConverter.concatenateList();
-        urlConverter.createListofUrls();
+        urlConverter.createListofCompetitionMetaData();
         CompetitionMetadata competitionMetadataItem = urlConverter.getCompetitionMetadata().get(1);
         assertEquals("Club Stableford", competitionMetadataItem.getCompetitionTitle());
         assertEquals("Sun 22 Sep 19", competitionMetadataItem.getDateOfCompetition());

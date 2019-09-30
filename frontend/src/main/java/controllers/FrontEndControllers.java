@@ -46,8 +46,12 @@ public class FrontEndControllers {
         String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
 
         Gson gson = new Gson();
+
         Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
         List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
+
+
+
         mv.setViewName("message.jsp");
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
@@ -76,7 +80,7 @@ public class FrontEndControllers {
 //        return "Your backend is available";
 //    }
 //
-//    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/tests.json")
+//    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
 //    public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
 //        String url = competitionURL.getUrl();
 //        String dataSource = getDataSource(url, DataResponseType.TEXT);
@@ -87,15 +91,15 @@ public class FrontEndControllers {
 //        return competition.golfers;
 //    }
 //
-//    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/tests.json")
+//    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
 //    public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
 //        String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
-//        UrlConverter urlConverter = new UrlConverter(dataSource);
+//        HTMLToCompetitionMetaDataConverter urlConverter = new HTMLToCompetitionMetaDataConverter(dataSource);
 //        urlConverter.convertRawDataToArrayList();
 //        urlConverter.removeUnwantedRowsFromList();
 //        urlConverter.extractCompetitionData();
 //        urlConverter.concatenateList();
-//        urlConverter.createListofUrls();
+//        urlConverter.createListofCompetitionMetaData();
 //        return urlConverter.getCompetitionMetadata();
 //    }
 //

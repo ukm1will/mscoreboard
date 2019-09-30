@@ -1,4 +1,4 @@
-package tests.medal.ClubMedal08Aug2019;
+package medal.ClubMedal08Aug2019;
 
 import data.medal.ClubMedal08Aug2019;
 import models.Competition;
