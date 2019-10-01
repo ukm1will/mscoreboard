@@ -1,7 +1,8 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<form action="/foobar">
+<form action="/add">
+    <input type="text" name="t1"><br>
     <input type="submit">
 </form>
 </body>
