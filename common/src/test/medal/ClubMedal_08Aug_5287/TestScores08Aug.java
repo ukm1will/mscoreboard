@@ -1,6 +1,6 @@
-package medal.ClubMedal08Aug2019;
+package medal.ClubMedal_08Aug_5287;
 
-import data.medal.ClubMedal08Aug2019;
+import data.medal.ClubMedal_08Aug_5287;
 import models.Competition;
 import models.Golfer;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestScores08Aug {
 
-    private final String currentDataFile = ClubMedal08Aug2019.WHOLE_PAGE;
+    private final String currentDataFile = ClubMedal_08Aug_5287.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
 
 

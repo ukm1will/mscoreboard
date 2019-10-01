@@ -9,28 +9,26 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body>
-
-<table class="w3-table-all w3-hoverable">
-    <tr>
-        <th>Date</th>
-        <th>Competition</th>
-        <th>ViewId</th>
-        <th>Anchor</th>
-    </tr>
-    <c:forEach var="url" items="${urls}">
+<form action="/add">
+    <table class="w3-table-all w3-hoverable">
         <tr>
-            <td>${url.getDateOfCompetition()}</td>
-            <td>${url.getCompetitionTitle()}</td>
-            <td>${url.getViewId()}</td>
-            <td><a href="/foobar/foo"> Get user details</a></td>
+            <th>Date</th>
+            <th>Competition</th>
+            <th>ViewId</th>
+            <th>Anchor</th>
         </tr>
-    </c:forEach>
-</table>
-
+        <c:forEach var="url" items="${urls}">
+            <tr>
+                <td>${url.getDateOfCompetition()}</td>
+                <td>${url.getCompetitionTitle()}</td>
+                <td>${url.getViewId()}</td>
+                <td><input type="hidden" name="viewId" value="${url.getViewId()}">
+                    <input type="submit">
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</form>
 </body>
 </html>
-
-
-
-    <input type="submit">
-</form>
+25 5337

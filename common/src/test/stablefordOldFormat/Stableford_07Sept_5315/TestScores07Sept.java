@@ -1,7 +1,6 @@
-package stableford.Stableford03Aug5281;
+package stablefordOldFormat.Stableford_07Sept_5315;
 
-import data.stableford.Stableford_03_AUG;
-import junit.framework.TestCase;
+import data.stablefordOldFormat.Stableford_07_SEP_5315;
 import models.Competition;
 import models.Golfer;
 import models.StablefordGolfer;
@@ -13,13 +12,13 @@ import java.util.Collections;
 import static enums.ScoringSystem.STABLEFORD;
 import static org.junit.Assert.assertEquals;
 
-public class TestScores03Aug {
+public class TestScores07Sept {
 
-    private final String currentDataFile = Stableford_03_AUG.WHOLE_PAGE;
+    private final String currentDataFile = Stableford_07_SEP_5315.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
 
     @Test
-    public void CompetitionShouldBeMedal() {
+    public void CompetitionShouldBeStableford() {
         assertEquals(STABLEFORD, competition.getScoringSystem());
     }
 
@@ -27,7 +26,7 @@ public class TestScores03Aug {
     public void ShouldAddResultsToCompetition() {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
-        assertEquals(68, competition.results.size());
+        assertEquals(57, competition.results.size());
     }
 
     @Test
@@ -35,7 +34,7 @@ public class TestScores03Aug {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        assertEquals(68, competition.golfers.size());
+        assertEquals(52, competition.golfers.size());
     }
 
     @Test
@@ -45,40 +44,41 @@ public class TestScores03Aug {
         competition.addGolfersToCompetition();
         StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
         assertEquals("Mike Williams", mikeWilliams.getFullName());
-        assertEquals(76, mikeWilliams.getGross());
-        assertEquals(71, mikeWilliams.getNett());
+        assertEquals(75, mikeWilliams.getGross());
+        assertEquals(70, mikeWilliams.getNett());
         assertEquals(5, mikeWilliams.getHandicap());
-        assertEquals(37, mikeWilliams.getPts());
+        assertEquals(38, mikeWilliams.getPts());
     }
 
+
     @Test
-    public void ShouldShowDeanBeforeSort() throws Exception {
+    public void ShouldShowTomBeforeSort() throws Exception {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        StablefordGolfer deanMorris = (StablefordGolfer) competition.find("Dean Morris");
-        assertEquals("Dean Morris", deanMorris.getFullName());
-        assertEquals(2, deanMorris.getPosition());
-        assertEquals(65, deanMorris.getGross());
-        assertEquals(66, deanMorris.getNett());
-        assertEquals(-1, deanMorris.getHandicap());
-        assertEquals(42, deanMorris.getPts());
+        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        assertEquals("Tom Trippett", tomTrippett.getFullName());
+        assertEquals(27, tomTrippett.getPosition());
+        assertEquals(81, tomTrippett.getGross());
+        assertEquals(76, tomTrippett.getNett());
+        assertEquals(5, tomTrippett.getHandicap());
+        assertEquals(32, tomTrippett.getPts());
     }
 
     @Test
-    public void ShouldShowDeansPositionAfterSort() throws Exception {
+    public void ShouldShowTomsPositionAfterSort() throws Exception {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
         competition.updateRankings();
-        StablefordGolfer deanMorris = (StablefordGolfer) competition.find("Dean Morris");
-        assertEquals("Dean Morris", deanMorris.getFullName());
-        assertEquals(1, deanMorris.getPosition());
-        assertEquals(65, deanMorris.getGross());
-        assertEquals(66, deanMorris.getNett());
-        assertEquals(-1, deanMorris.getHandicap());
-        assertEquals(42, deanMorris.getPts());
+        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        assertEquals("Tom Trippett", tomTrippett.getFullName());
+        assertEquals(13, tomTrippett.getPosition());
+        assertEquals(81, tomTrippett.getGross());
+        assertEquals(76, tomTrippett.getNett());
+        assertEquals(5, tomTrippett.getHandicap());
+        assertEquals(32, tomTrippett.getPts());
     }
 
     @Test
@@ -88,8 +88,8 @@ public class TestScores03Aug {
         competition.addGolfersToCompetition();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        TestCase.assertEquals("Brett Phippen", posOne.getFullName());
-        TestCase.assertEquals("Dean Morris", posTwo.getFullName());
+        assertEquals("Lance L. Heycock", posOne.getFullName());
+        assertEquals("Gareth J Davies", posTwo.getFullName());
     }
 
     @Test
@@ -100,9 +100,8 @@ public class TestScores03Aug {
         Collections.sort(competition.golfers);
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        TestCase.assertEquals("Dean Morris", posOne.getFullName());
-        TestCase.assertEquals("Brett Phippen", posTwo.getFullName());
+        assertEquals("James Graham", posOne.getFullName());
+        assertEquals("Mike Williams", posTwo.getFullName());
     }
-
 
 }

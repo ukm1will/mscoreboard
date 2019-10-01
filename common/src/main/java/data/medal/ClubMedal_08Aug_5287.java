@@ -1,6 +1,6 @@
 package data.medal;
 
-public class ClubMedal08Aug2019 {
+public class ClubMedal_08Aug_5287 {
 
     public static final String WHOLE_PAGE =
             "MasterScoreboard\n" +

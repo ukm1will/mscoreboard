@@ -4,6 +4,7 @@ public class StablefordGolfer extends Golfer {
 
     private int pts;
 
+
     @Override
     public void assignAttributes() {
         super.assignAttributes();
@@ -12,9 +13,23 @@ public class StablefordGolfer extends Golfer {
         nett = calculateNett();
     }
 
+    @Override
+    public String toString() {
+        return "StablefordGolfer{" +
+                " position=" + position +
+                ", fullName='" + fullName + '\'' +
+                ", pts=" + pts +
+                ", gross=" + gross +
+                ", nett=" + nett +
+                ", handicap=" + handicap +
+                '}';
+    }
+
+
     public int getPts() {
         return pts;
     }
+
 
     @Override
     public int calculateGross() {

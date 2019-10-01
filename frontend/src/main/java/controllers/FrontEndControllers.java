@@ -24,7 +24,7 @@ public class FrontEndControllers {
 
     @RequestMapping("/add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
-        int i = Integer.parseInt(request.getParameter("t1"));
+        int i = Integer.parseInt(request.getParameter("viewId"));
         Colourise.out(i);
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
@@ -37,8 +37,6 @@ public class FrontEndControllers {
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
     }
-
-
 
 
 

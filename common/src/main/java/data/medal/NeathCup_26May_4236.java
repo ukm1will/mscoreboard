@@ -1,6 +1,6 @@
 package data.medal;
 
-public class NeathCup2019 {
+public class NeathCup_26May_4236 {
     public static final String WHOLE_PAGE =
             "Competition Results - Swansea Bay Golf Club\n" +
                     "\n" +

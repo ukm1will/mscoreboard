@@ -45,7 +45,6 @@ public class BackendController {
         Competition competition = new Competition(dataSource);
         competition.addResultsToCompetition(dataSource);
         competition.addGolfersToCompetition();
-        Collections.sort(competition.golfers);
         return competition.golfers;
     }
 

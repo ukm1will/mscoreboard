@@ -10,6 +10,7 @@ public class Competition {
 
     public List<Golfer> golfers = new ArrayList<>();
     public List<String> results = new ArrayList<>();
+    public List<StablefordGolfer> stablefordGolfers = new ArrayList<>();
 
     private ScoringSystem scoringSystem;
 
@@ -57,11 +58,11 @@ public class Competition {
 
     private void addStablefordGolfers() throws Exception {
         for (String result : results) {
-            Golfer golfer = new StablefordGolfer();
+            StablefordGolfer golfer = new StablefordGolfer();
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
-                golfers.add(golfer);
+                stablefordGolfers.add(golfer);
             }
         }
     }
@@ -70,8 +71,8 @@ public class Competition {
         return str.length() > 0 && Character.isDigit(str.charAt(0));
     }
 
-    public Golfer find(String name) {
-        for (Golfer golfer : this.golfers) {
+    public StablefordGolfer find(String name) {
+        for (StablefordGolfer golfer : this.stablefordGolfers) {
             if (golfer.getFullName().equals(name)) {
                 return golfer;
             }

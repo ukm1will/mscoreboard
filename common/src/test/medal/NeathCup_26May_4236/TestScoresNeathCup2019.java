@@ -1,6 +1,6 @@
-package medal.NeathCup2019;
+package medal.NeathCup_26May_4236;
 
-import data.medal.NeathCup2019;
+import data.medal.NeathCup_26May_4236;
 import models.Competition;
 import models.Golfer;
 import org.junit.Assert;
@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestScoresNeathCup2019 {
 
-    private final String currentDataFile = NeathCup2019.WHOLE_PAGE;
+    private final String currentDataFile = NeathCup_26May_4236.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
 
     @Test

@@ -10,10 +10,10 @@ public abstract class Golfer implements Comparable {
     int gross;
     int nett;
     int handicap;
-    private int position;
+    int position;
     private String forename;
     private String surname;
-    private String fullName;
+    protected String fullName;
     private String[] parts;
 
     public int getPosition() {
@@ -24,16 +24,6 @@ public abstract class Golfer implements Comparable {
         this.position = position;
     }
 
-    @Override
-    public String toString() {
-        return "Golfer{" +
-                "gross=" + gross +
-                ", nett=" + nett +
-                ", handicap=" + handicap +
-                ", position=" + position +
-                ", fullName='" + fullName + '\'' +
-                '}';
-    }
 
     public int getGross() {
         return gross;
@@ -42,6 +32,7 @@ public abstract class Golfer implements Comparable {
     public int getNett() {
         return nett;
     }
+
 
     public int getHandicap() {
         return handicap;
