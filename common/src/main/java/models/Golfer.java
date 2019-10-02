@@ -4,13 +4,14 @@ import org.apache.commons.codec.binary.StringUtils;
 
 import java.util.Objects;
 
-public abstract class Golfer implements Comparable {
+public class Golfer implements Comparable {
 
     protected String[] partsOfScore;
     int gross;
     int nett;
     int handicap;
     int position;
+    int pts;
     private String forename;
     private String surname;
     protected String fullName;
@@ -45,12 +46,29 @@ public abstract class Golfer implements Comparable {
         surname = partsOfName[0].trim();
         forename = partsOfName[1].trim();
         handicap = calculateHandicap();
+        pts = calculatePoints();
+        gross = calculateGross();
+        nett = calculateNett();
         fullName = forename + ' ' + surname;
     }
 
-    public abstract int calculateGross();
+    public int calculateGross() {
+        int retval;
+        int ptsOver36 = this.pts - 36;
+        int expectedGross = 72 + handicap;
+        retval = expectedGross - ptsOver36;
+        return retval;
+    }
 
-    public abstract int calculateNett();
+    private int calculatePoints() {
+        return Integer.parseInt(partsOfScore[0]);
+    }
+
+
+    public int calculateNett() {
+        nett = gross - handicap;
+        return nett;
+    }
 
     void split(String s) {
         this.parts = s.split("\t");
@@ -78,5 +96,9 @@ public abstract class Golfer implements Comparable {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public int getPts() {
+        return pts;
     }
 }

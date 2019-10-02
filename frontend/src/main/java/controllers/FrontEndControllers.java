@@ -31,8 +31,8 @@ public class FrontEndControllers {
         String url = "http://localhost:9090/views/" + i;
         String json = restTemplate.getForObject(url, String.class);
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
-        List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
+        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
+        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
         mv.setViewName("stableford.jsp");
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
@@ -65,8 +65,8 @@ public class FrontEndControllers {
         RestTemplate restTemplate = new RestTemplate();
         String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
-        List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
+        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
+        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
         mv.setViewName("stableford.jsp");
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;

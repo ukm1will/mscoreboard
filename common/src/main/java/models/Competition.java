@@ -10,7 +10,6 @@ public class Competition {
 
     public List<Golfer> golfers = new ArrayList<>();
     public List<String> results = new ArrayList<>();
-    public List<StablefordGolfer> stablefordGolfers = new ArrayList<>();
 
     private ScoringSystem scoringSystem;
 
@@ -40,14 +39,25 @@ public class Competition {
         if (scoringSystem == ScoringSystem.STABLEFORD) {
             addStablefordGolfers();
         } else if (scoringSystem == ScoringSystem.MEDAL) {
-            addMedalGolfers();
+            // addMedalGolfers();
         } else
             throw new UnsupportedOperationException("Trouble at mill in Competition");
     }
 
-    private void addMedalGolfers() {
+//    private void addMedalGolfers() {
+//        for (String result : results) {
+//            Golfer golfer = new MedalGolfer();
+//            golfer.split(result);
+//            if (firstCharOfStringIsDigit(result)) {
+//                golfer.assignAttributes();
+//                golfers.add(golfer);
+//            }
+//        }
+//    }
+
+    private void addStablefordGolfers() throws Exception {
         for (String result : results) {
-            Golfer golfer = new MedalGolfer();
+            Golfer golfer = new Golfer();
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
                 golfer.assignAttributes();
@@ -56,23 +66,12 @@ public class Competition {
         }
     }
 
-    private void addStablefordGolfers() throws Exception {
-        for (String result : results) {
-            StablefordGolfer golfer = new StablefordGolfer();
-            golfer.split(result);
-            if (firstCharOfStringIsDigit(result)) {
-                golfer.assignAttributes();
-                stablefordGolfers.add(golfer);
-            }
-        }
-    }
-
     private boolean firstCharOfStringIsDigit(String str) {
         return str.length() > 0 && Character.isDigit(str.charAt(0));
     }
 
-    public StablefordGolfer find(String name) {
-        for (StablefordGolfer golfer : this.stablefordGolfers) {
+    public Golfer find(String name) {
+        for (Golfer golfer : this.golfers) {
             if (golfer.getFullName().equals(name)) {
                 return golfer;
             }

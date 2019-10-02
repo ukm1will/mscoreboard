@@ -4,7 +4,6 @@ import data.stablefordOldFormat.Stableford_03_AUG_5281;
 import junit.framework.TestCase;
 import models.Competition;
 import models.Golfer;
-import models.StablefordGolfer;
 import org.junit.Test;
 import service.StringHelper;
 

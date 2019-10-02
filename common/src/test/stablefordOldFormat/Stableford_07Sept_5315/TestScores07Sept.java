@@ -3,7 +3,6 @@ package stablefordOldFormat.Stableford_07Sept_5315;
 import data.stablefordOldFormat.Stableford_07_SEP_5315;
 import models.Competition;
 import models.Golfer;
-import models.StablefordGolfer;
 import org.junit.Test;
 import service.StringHelper;
 
@@ -42,7 +41,7 @@ public class TestScores07Sept {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
+        Golfer mikeWilliams = competition.find("Mike Williams");
         assertEquals("Mike Williams", mikeWilliams.getFullName());
         assertEquals(75, mikeWilliams.getGross());
         assertEquals(70, mikeWilliams.getNett());
@@ -56,7 +55,7 @@ public class TestScores07Sept {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        Golfer tomTrippett = competition.find("Tom Trippett");
         assertEquals("Tom Trippett", tomTrippett.getFullName());
         assertEquals(27, tomTrippett.getPosition());
         assertEquals(81, tomTrippett.getGross());
@@ -72,7 +71,7 @@ public class TestScores07Sept {
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
         competition.updateRankings();
-        StablefordGolfer tomTrippett = (StablefordGolfer) competition.find("Tom Trippett");
+        Golfer tomTrippett = competition.find("Tom Trippett");
         assertEquals("Tom Trippett", tomTrippett.getFullName());
         assertEquals(13, tomTrippett.getPosition());
         assertEquals(81, tomTrippett.getGross());
@@ -82,7 +81,7 @@ public class TestScores07Sept {
     }
 
     @Test
-    public void BeforeSortingCheckNames() throws Exception {
+    public void BeforeSortingLanceIsFirst() throws Exception {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
@@ -93,7 +92,7 @@ public class TestScores07Sept {
     }
 
     @Test
-    public void AfterSortingCheckNames() throws Exception {
+    public void AfterSortingJamesIsFirst() throws Exception {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();

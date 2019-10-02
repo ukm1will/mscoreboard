@@ -3,8 +3,6 @@ package json;
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
 import models.CompetitionMetadata;
-import models.Golfer;
-import models.StablefordGolfer;
 import org.junit.Test;
 
 import java.lang.reflect.Type;
@@ -49,45 +47,45 @@ public class JsonConversionTests {
         assertEquals(5337, competitionMetadata.getViewId());
     }
 
-    @Test
-    public void ShouldConvertJSONToListOfStablefordGolfers() {
-        String json = "[" +
-                "    {" +
-                "        \"gross\": 80," +
-                "        \"nett\": 68," +
-                "        \"handicap\": 12," +
-                "        \"position\": 1," +
-                "        \"pts\": 40," +
-                "        \"fullName\": \"Lance L. Heycock\"" +
-                "    }," +
-                "    {" +
-                "        \"gross\": 78," +
-                "        \"nett\": 68," +
-                "        \"handicap\": 10," +
-                "        \"position\": 2," +
-                "        \"pts\": 40," +
-                "        \"fullName\": \"Gareth J Davies\"" +
-                "    }," +
-                "    {" +
-                "        \"gross\": 79," +
-                "        \"nett\": 69," +
-                "        \"handicap\": 10," +
-                "        \"position\": 3," +
-                "        \"pts\": 39," +
-                "        \"fullName\": \"Chris Holwill\"" +
-                "    }]";
-
-        Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
-        List<StablefordGolfer> golfers = gson.fromJson(json, listType);
-        StablefordGolfer golfer = golfers.get(0);
-
-        assertEquals(3, golfers.size());
-        assertEquals(1, golfer.getPosition());
-        assertEquals("Lance L. Heycock", golfer.getFullName());
-        assertEquals(80, golfer.getGross());
-        assertEquals(68, golfer.getNett());
-        assertEquals(40, golfer.getPts());
-        assertEquals(12, golfer.getHandicap());
-    }
+//    @Test
+//    public void ShouldConvertJSONToListOfStablefordGolfers() {
+//        String json = "[" +
+//                "    {" +
+//                "        \"gross\": 80," +
+//                "        \"nett\": 68," +
+//                "        \"handicap\": 12," +
+//                "        \"position\": 1," +
+//                "        \"pts\": 40," +
+//                "        \"fullName\": \"Lance L. Heycock\"" +
+//                "    }," +
+//                "    {" +
+//                "        \"gross\": 78," +
+//                "        \"nett\": 68," +
+//                "        \"handicap\": 10," +
+//                "        \"position\": 2," +
+//                "        \"pts\": 40," +
+//                "        \"fullName\": \"Gareth J Davies\"" +
+//                "    }," +
+//                "    {" +
+//                "        \"gross\": 79," +
+//                "        \"nett\": 69," +
+//                "        \"handicap\": 10," +
+//                "        \"position\": 3," +
+//                "        \"pts\": 39," +
+//                "        \"fullName\": \"Chris Holwill\"" +
+//                "    }]";
+//
+//        Gson gson = new Gson();
+//        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
+//        List<StablefordGolfer> golfers = gson.fromJson(json, listType);
+//        StablefordGolfer golfer = golfers.get(0);
+//
+//        assertEquals(3, golfers.size());
+//        assertEquals(1, golfer.getPosition());
+//        assertEquals("Lance L. Heycock", golfer.getFullName());
+//        assertEquals(80, golfer.getGross());
+//        assertEquals(68, golfer.getNett());
+//        assertEquals(40, golfer.getPts());
+//        assertEquals(12, golfer.getHandicap());
+//    }
 }
