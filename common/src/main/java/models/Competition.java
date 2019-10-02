@@ -35,32 +35,12 @@ public class Competition {
         Collections.addAll(results, nextSplit);
     }
 
-    public void addGolfersToCompetition() throws Exception {
-        if (scoringSystem == ScoringSystem.STABLEFORD) {
-            addStablefordGolfers();
-        } else if (scoringSystem == ScoringSystem.MEDAL) {
-            // addMedalGolfers();
-        } else
-            throw new UnsupportedOperationException("Trouble at mill in Competition");
-    }
-
-//    private void addMedalGolfers() {
-//        for (String result : results) {
-//            Golfer golfer = new MedalGolfer();
-//            golfer.split(result);
-//            if (firstCharOfStringIsDigit(result)) {
-//                golfer.assignAttributes();
-//                golfers.add(golfer);
-//            }
-//        }
-//    }
-
-    private void addStablefordGolfers() throws Exception {
+    public void addGolfersToCompetition() {
         for (String result : results) {
             Golfer golfer = new Golfer();
             golfer.split(result);
             if (firstCharOfStringIsDigit(result)) {
-                golfer.assignAttributes();
+                golfer.assignAttributes(this.scoringSystem);
                 golfers.add(golfer);
             }
         }

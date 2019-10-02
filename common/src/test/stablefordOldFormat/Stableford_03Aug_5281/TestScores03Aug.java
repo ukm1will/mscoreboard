@@ -42,7 +42,7 @@ public class TestScores03Aug {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        StablefordGolfer mikeWilliams = (StablefordGolfer) competition.find("Mike Williams");
+        Golfer mikeWilliams = competition.find("Mike Williams");
         assertEquals("Mike Williams", mikeWilliams.getFullName());
         assertEquals(76, mikeWilliams.getGross());
         assertEquals(71, mikeWilliams.getNett());
@@ -55,7 +55,7 @@ public class TestScores03Aug {
         String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
-        StablefordGolfer deanMorris = (StablefordGolfer) competition.find("Dean Morris");
+        Golfer deanMorris = competition.find("Dean Morris");
         assertEquals("Dean Morris", deanMorris.getFullName());
         assertEquals(2, deanMorris.getPosition());
         assertEquals(65, deanMorris.getGross());
@@ -71,7 +71,7 @@ public class TestScores03Aug {
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
         competition.updateRankings();
-        StablefordGolfer deanMorris = (StablefordGolfer) competition.find("Dean Morris");
+        Golfer deanMorris = competition.find("Dean Morris");
         assertEquals("Dean Morris", deanMorris.getFullName());
         assertEquals(1, deanMorris.getPosition());
         assertEquals(65, deanMorris.getGross());
