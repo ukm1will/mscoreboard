@@ -7,7 +7,7 @@
     <artifactId>mscoreboard</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
+-- line at 16:04
     <modules>
         <module>backend</module>
         <module>common</module>
