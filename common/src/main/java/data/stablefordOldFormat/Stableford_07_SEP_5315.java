@@ -1,6 +1,6 @@
-package data.stableford;
+package data.stablefordOldFormat;
 
-public class Stableford_07_SEP {
+public class Stableford_07_SEP_5315 {
 
     public static final String WHOLE_PAGE =
                     "MasterScoreboard\n" +

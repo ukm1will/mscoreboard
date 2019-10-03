@@ -1,20 +1,25 @@
 package models;
 
+import enums.ScoringSystem;
 import org.apache.commons.codec.binary.StringUtils;
 
 import java.util.Objects;
 
-public abstract class Golfer implements Comparable {
+public class Golfer implements Comparable {
 
-    protected String[] partsOfScore;
-    int gross;
-    int nett;
-    int handicap;
+    private String[] partsOfScore;
+    private String[] partsOfName;
+
+    private int gross;
+    private int nett;
+    private int handicap;
     private int position;
+    private int pts;
     private String forename;
     private String surname;
     private String fullName;
     private String[] parts;
+
 
     public int getPosition() {
         return position;
@@ -22,17 +27,6 @@ public abstract class Golfer implements Comparable {
 
     void setPosition(int position) {
         this.position = position;
-    }
-
-    @Override
-    public String toString() {
-        return "Golfer{" +
-                "gross=" + gross +
-                ", nett=" + nett +
-                ", handicap=" + handicap +
-                ", position=" + position +
-                ", fullName='" + fullName + '\'' +
-                '}';
     }
 
     public int getGross() {
@@ -47,19 +41,39 @@ public abstract class Golfer implements Comparable {
         return handicap;
     }
 
-    public void assignAttributes() {
-        String[] partsOfName = this.parts[1].split(",");
+    public void assignAttributes(ScoringSystem scoringSystem) {
         partsOfScore = this.parts[2].split(" ");
+        handicap = calculateHandicap();
+        if (scoringSystem == ScoringSystem.STABLEFORD) {
+            pts = calculatePoints();
+            gross = calculateGross();
+        } else if (scoringSystem == ScoringSystem.MEDAL) {
+            gross = Integer.parseInt(partsOfScore[0]);
+        }
+        else {
+            throw new UnsupportedOperationException("Trouble at mill in Golfer");
+        }
+
+        nett = gross - handicap;
+        partsOfName = this.parts[1].split(",");
+
         position = Integer.parseInt(parts[0]);
         surname = partsOfName[0].trim();
         forename = partsOfName[1].trim();
-        handicap = calculateHandicap();
+
         fullName = forename + ' ' + surname;
     }
 
-    public abstract int calculateGross();
 
-    public abstract int calculateNett();
+    public int calculateGross() {
+        int ptsOver36 = this.pts - 36;
+        int expectedGross = 72 + handicap;
+        return expectedGross - ptsOver36;
+    }
+
+    private int calculatePoints() {
+        return Integer.parseInt(partsOfScore[0]);
+    }
 
     void split(String s) {
         this.parts = s.split("\t");
@@ -87,5 +101,9 @@ public abstract class Golfer implements Comparable {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public int getPts() {
+        return pts;
     }
 }

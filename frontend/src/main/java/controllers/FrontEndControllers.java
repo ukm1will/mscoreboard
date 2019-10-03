@@ -8,17 +8,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import service.StringHelper;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class FrontEndControllers {
+
+    @RequestMapping("/add")
+    public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
+        int i = Integer.parseInt(request.getParameter("viewId"));
+        Colourise.out(i);
+        ModelAndView mv = new ModelAndView();
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:9090/views/" + i;
+        String json = restTemplate.getForObject(url, String.class);
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
+        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
+        mv.setViewName("stableford.jsp");
+        mv.addObject("stablefordGolfers", stablefordGolfers);
+        return mv;
+    }
+
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/urls")
     public ModelAndView getURIs() {
@@ -39,20 +59,15 @@ public class FrontEndControllers {
         return mv;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/foobar")
-    public ModelAndView doNothing() {
+    @RequestMapping(method = RequestMethod.GET, value = "/foobar/{personDTO}")
+    public ModelAndView doNothing(@RequestParam(value = "personDTO") String personDTO) {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
         String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
-
         Gson gson = new Gson();
-
-        Type listType = new TypeToken<ArrayList<StablefordGolfer>>() {}.getType();
-        List<StablefordGolfer> stablefordGolfers = gson.fromJson(json, listType);
-
-
-
-        mv.setViewName("message.jsp");
+        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
+        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
+        mv.setViewName("stableford.jsp");
         mv.addObject("stablefordGolfers", stablefordGolfers);
         return mv;
     }

@@ -1,6 +1,6 @@
-package data.stableford;
+package data.stablefordOldFormat;
 
-public class Stableford_03_AUG {
+public class Stableford_03_AUG_5281 {
 
     public static final String WHOLE_PAGE =
                     "Competition Results - Swansea Bay Golf Club\n" +
@@ -25,7 +25,7 @@ public class Stableford_03_AUG {
                             "\n" +
                             "\n" +
                             "\n" +
-                            "Club Stableford_03_AUG\n" +
+                            "Club Stableford_03_AUG_5281\n" +
                             "Competition played on 03 August 2019 at Swansea Bay.\n" +
                             "See also: All available Reports\n" +
                             "Full Net Result\n" +
@@ -104,11 +104,11 @@ public class Stableford_03_AUG {
                             "\n" +
                             "Number of Cards Processed = 68\n" +
                             "Competition Format:\n" +
-                            "Singles Stableford_03_AUG competition. Handicap allowance: Full allowance.\n" +
+                            "Singles Stableford_03_AUG_5281 competition. Handicap allowance: Full allowance.\n" +
                             "Competition Scratch Score (CSS):\n" +
                             "\n" +
                             "Tees\tPar\tSSS\tCompetition Scratch Score\n" +
-                            "Yellow (Men)\t72\t72\t71 (37 Stableford_03_AUG Points)\n" +
+                            "Yellow (Men)\t72\t72\t71 (37 Stableford_03_AUG_5281 Points)\n" +
                             "\n" +
                             "Ties:\n" +
                             "Where a player or team is placed ahead of the following player or team in the results, based upon matching scorecards ('Countback'), the 'Countback' column documents the winning section of their scorecard.\n" +
