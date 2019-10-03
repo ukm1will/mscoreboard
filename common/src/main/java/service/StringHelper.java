@@ -1,5 +1,6 @@
 package service;
 
+import enums.MasterScoreboardFormat;
 import models.Golfer;
 
 import java.util.List;
@@ -31,7 +32,6 @@ public class StringHelper {
     }
 
 
-
     private static String removeBefore(String input, String token) {
         return substringAfter(input, token);
     }
@@ -40,5 +40,15 @@ public class StringHelper {
         return Stream.of(str.split("\n"))
                 .map(String::new)
                 .collect(Collectors.toList());
+    }
+
+
+    public static String getBeforePart(MasterScoreboardFormat msFormat) throws Exception {
+        if(msFormat == MasterScoreboardFormat.MS_OLD)
+            return "Handicap\n";
+        else if(msFormat == MasterScoreboardFormat.MS_NEW)
+            return "Countback\n";
+        else
+            throw new Exception("Trouble at mill relating to MasterScoreboardFormat");
     }
 }

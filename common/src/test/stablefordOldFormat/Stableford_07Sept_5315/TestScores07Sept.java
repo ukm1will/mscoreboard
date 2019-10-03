@@ -15,6 +15,11 @@ public class TestScores07Sept {
 
     private final String currentDataFile = Stableford_07_SEP_5315.WHOLE_PAGE;
     private Competition competition = new Competition(currentDataFile);
+    private String beforePart;
+
+    public TestScores07Sept() throws Exception {
+        beforePart = StringHelper.getBeforePart(competition.getMasterScoreboardFormat());
+    }
 
     @Test
     public void CompetitionShouldBeStableford() {
@@ -23,14 +28,14 @@ public class TestScores07Sept {
 
     @Test
     public void ShouldAddResultsToCompetition() {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         assertEquals(57, competition.results.size());
     }
 
     @Test
     public void ShouldAddGolfersToCompetition() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         assertEquals(52, competition.golfers.size());
@@ -38,7 +43,7 @@ public class TestScores07Sept {
 
     @Test
     public void MikeShouldHaveCorrectData() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Golfer mikeWilliams = competition.find("Mike Williams");
@@ -52,7 +57,7 @@ public class TestScores07Sept {
 
     @Test
     public void ShouldShowTomBeforeSort() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Golfer tomTrippett = competition.find("Tom Trippett");
@@ -66,7 +71,7 @@ public class TestScores07Sept {
 
     @Test
     public void ShouldShowTomsPositionAfterSort() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
@@ -82,7 +87,7 @@ public class TestScores07Sept {
 
     @Test
     public void BeforeSortingLanceIsFirst() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Golfer posOne = competition.golfers.get(0);
@@ -95,7 +100,7 @@ public class TestScores07Sept {
 
     @Test
     public void AfterSortingJamesIsFirst() throws Exception {
-        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, "Handicap\n", "Number of Cards Processed");
+        String activeData = StringHelper.splitBeforeAndAfter(currentDataFile, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);

@@ -1,5 +1,6 @@
 package models;
 
+import enums.MasterScoreboardFormat;
 import enums.ScoringSystem;
 
 import java.util.ArrayList;
@@ -10,13 +11,24 @@ public class Competition {
 
     public List<Golfer> golfers = new ArrayList<>();
     public List<String> results = new ArrayList<>();
-
+    private MasterScoreboardFormat masterScoreboardFormat;
     private ScoringSystem scoringSystem;
-
 
     public Competition(String currentDataFile) {
         this.setScoringSystem(currentDataFile);
+        this.setMasterScoreboardFormat(currentDataFile);
+    }
 
+    public void setMasterScoreboardFormat(String dataSource) {
+        if(dataSource.contains("Revised")) {
+            this.masterScoreboardFormat = MasterScoreboardFormat.MS_OLD;
+        }
+        else
+            this.masterScoreboardFormat = MasterScoreboardFormat.MS_NEW;
+    }
+
+    public MasterScoreboardFormat getMasterScoreboardFormat() {
+        return masterScoreboardFormat;
     }
 
     public ScoringSystem getScoringSystem() {
@@ -29,6 +41,7 @@ public class Competition {
         else
             this.scoringSystem = ScoringSystem.MEDAL;
     }
+
 
     public void addResultsToCompetition(String str) {
         String[] nextSplit = str.split("\n");
@@ -64,5 +77,9 @@ public class Competition {
         for (int i = 0; i < golfers.size(); i++) {
             golfers.get(i).setPosition(i + 1);
         }
+    }
+
+    public MasterScoreboardFormat getFormat(String currentDataFile) {
+        return this.masterScoreboardFormat;
     }
 }
