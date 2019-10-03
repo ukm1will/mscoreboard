@@ -33,6 +33,18 @@ public class Golfer implements Comparable {
         return gross;
     }
 
+    @Override
+    public String toString() {
+        return "Golfer{" +
+                "position=" + position +
+                ", fullName='" + fullName + '\'' +
+                ", gross=" + gross +
+                ", nett=" + nett +
+                ", handicap=" + handicap +
+                ", pts=" + pts +
+                '}';
+    }
+
     public int getNett() {
         return nett;
     }

@@ -87,8 +87,11 @@ public class TestScores03Aug {
         competition.addGolfersToCompetition();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        TestCase.assertEquals("Brett Phippen", posOne.getFullName());
-        TestCase.assertEquals("Dean Morris", posTwo.getFullName());
+        assertEquals("Brett Phippen", posOne.getFullName());
+        assertEquals(1, posOne.getPosition());
+        assertEquals("Dean Morris", posTwo.getFullName());
+        assertEquals(2, posTwo.getPosition());
+
     }
 
     @Test
@@ -97,11 +100,12 @@ public class TestScores03Aug {
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
+        competition.updateRankings();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
-        TestCase.assertEquals("Dean Morris", posOne.getFullName());
-        TestCase.assertEquals("Brett Phippen", posTwo.getFullName());
+        assertEquals("Dean Morris", posOne.getFullName());
+        assertEquals(1, posOne.getPosition());
+        assertEquals("Brett Phippen", posTwo.getFullName());
+        assertEquals(2, posTwo.getPosition());
     }
-
-
 }

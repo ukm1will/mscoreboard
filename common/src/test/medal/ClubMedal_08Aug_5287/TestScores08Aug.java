@@ -83,7 +83,9 @@ public class TestScores08Aug {
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
         assertEquals("Michael M Linnane", posOne.getFullName());
+        assertEquals(1, posOne.getPosition());
         assertEquals("Nigel P. Maimone", posTwo.getFullName());
+        assertEquals(2, posTwo.getPosition());
     }
 
     @Test
@@ -92,9 +94,12 @@ public class TestScores08Aug {
         competition.addResultsToCompetition(activeData);
         competition.addGolfersToCompetition();
         Collections.sort(competition.golfers);
+        competition.updateRankings();
         Golfer posOne = competition.golfers.get(0);
         Golfer posTwo = competition.golfers.get(1);
         assertEquals("Michael M Linnane", posOne.getFullName());
+        assertEquals(1, posOne.getPosition());
         assertEquals("Gareth M Edwards", posTwo.getFullName());
+        assertEquals(2, posTwo.getPosition());
     }
 }

@@ -1,5 +1,7 @@
 package service;
 
+import models.Golfer;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +21,15 @@ public class StringHelper {
     public static String removeAfter(String input, String token) {
         return substringBefore(input, token);
     }
+
+
+    public static void toString(List<Golfer> golfers) {
+        System.out.println();
+        for (Golfer golfer : golfers) {
+            System.out.println(golfer.toString());
+        }
+    }
+
 
 
     private static String removeBefore(String input, String token) {
