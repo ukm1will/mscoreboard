@@ -22,13 +22,11 @@
                 <td>${url.getDateOfCompetition()}</td>
                 <td>${url.getCompetitionTitle()}</td>
                 <td>${url.getViewId()}</td>
-                <td><input type="hidden" name="viewId" value="${url.getViewId()}">
-                    <input type="submit">
-                </td>
+                <td><input type="submit" name="viewId" value="${url.getViewId()}"></td>
             </tr>
         </c:forEach>
     </table>
 </form>
 </body>
 </html>
-25 5337
+
