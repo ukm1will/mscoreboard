@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body>
-<form action="/add">
+<form action="/view">
     <table class="w3-table-all w3-hoverable">
         <tr>
             <th>Date</th>

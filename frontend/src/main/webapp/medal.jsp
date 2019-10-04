@@ -14,10 +14,8 @@
     <tr>
         <th>Position</th>
         <th>Name</th>
-
         <th>Gross</th>
         <th>Nett</th>
-        <th>Pts</th>
         <th>Handicap</th>
     </tr>
     <c:forEach var="golfer" items="${golfers}">
@@ -26,7 +24,6 @@
             <td>${golfer.getFullName()}</td>
             <td>${golfer.getGross()}</td>
             <td>${golfer.getNett()}</td>
-            <td>${golfer.getPts()}</td>
             <td>${golfer.getHandicap()}</td>
         </tr>
     </c:forEach>

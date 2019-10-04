@@ -1,17 +1,16 @@
 package controllers;
 
-import enums.DataResponseType;
 import gherkin.deps.com.google.gson.Gson;
 import gherkin.deps.com.google.gson.reflect.TypeToken;
-import models.*;
+import models.Colourise;
+import models.CompetitionMetadata;
+import models.Golfer;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import service.StringHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,29 +21,34 @@ import java.util.List;
 @Controller
 public class FrontEndControllers {
 
-    @RequestMapping("/add")
+    @RequestMapping("/view")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
         int i = Integer.parseInt(request.getParameter("viewId"));
         Colourise.out(i);
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/views/" + i;
+        String url = "http://localhost:9090/view/" + i;
         String json = restTemplate.getForObject(url, String.class);
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
-        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
-        mv.setViewName("stableford.jsp");
-        mv.addObject("stablefordGolfers", stablefordGolfers);
+        Type listType = new TypeToken<ArrayList<Golfer>>() {
+        }.getType();
+        List<Golfer> golfers = gson.fromJson(json, listType);
+
+        if (IsMedalCompetition(golfers.get(0)))
+            mv.setViewName("medal.jsp");
+        else
+            mv.setViewName("stableford.jsp");
+
+        mv.addObject("golfers", golfers);
         return mv;
     }
 
 
-
-    @RequestMapping(method = RequestMethod.GET, value = "/urls")
+    @RequestMapping(method = RequestMethod.GET, value = "/url")
     public ModelAndView getURIs() {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
-        String json = restTemplate.getForObject("http://localhost:9090/urls", String.class);
+        String json = restTemplate.getForObject("http://localhost:9090/url", String.class);
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {
         }.getType();
@@ -59,67 +63,8 @@ public class FrontEndControllers {
         return mv;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/foobar/{personDTO}")
-    public ModelAndView doNothing(@RequestParam(value = "personDTO") String personDTO) {
-        ModelAndView mv = new ModelAndView();
-        RestTemplate restTemplate = new RestTemplate();
-        String json = restTemplate.getForObject("http://localhost:9090/views/5315", String.class);
-        Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<Golfer>>() {}.getType();
-        List<Golfer> stablefordGolfers = gson.fromJson(json, listType);
-        mv.setViewName("stableford.jsp");
-        mv.addObject("stablefordGolfers", stablefordGolfers);
-        return mv;
+
+    private boolean IsMedalCompetition(Golfer golfer) {
+        return golfer.getPts() == -1;
     }
 }
-//
-//    @RequestMapping(method = RequestMethod.GET, value = "/views/{viewId}", produces = "application/json")
-//    public List<Golfer> getView(@PathVariable("viewId") final int viewId) throws Exception {
-//        String url = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + viewId;
-//        String dataSource = getDataSource(url, DataResponseType.TEXT);
-//        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
-//        Competition competition = new Competition(dataSource);
-//        competition.addResultsToCompetition(dataSource);
-//        competition.addGolfersToCompetition();
-//        return competition.golfers;
-//    }
-//
-
-
-
-
-
-
-//    @RequestMapping(method = RequestMethod.GET, value = "/health")
-//    public String health() {
-//        return "Your backend is available";
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST, value = "/competition", produces = "application/json")
-//    public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
-//        String url = competitionURL.getUrl();
-//        String dataSource = getDataSource(url, DataResponseType.TEXT);
-//        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
-//        Competition competition = new Competition(dataSource);
-//        competition.addResultsToCompetition(dataSource);
-//        competition.addGolfersToCompetition();
-//        return competition.golfers;
-//    }
-//
-//    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
-//    public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
-//        String dataSource = getDataSource(msHomePage, DataResponseType.HTML);
-//        HTMLToCompetitionMetaDataConverter urlConverter = new HTMLToCompetitionMetaDataConverter(dataSource);
-//        urlConverter.convertRawDataToArrayList();
-//        urlConverter.removeUnwantedRowsFromList();
-//        urlConverter.extractCompetitionData();
-//        urlConverter.concatenateList();
-//        urlConverter.createListofCompetitionMetaData();
-//        return urlConverter.getCompetitionMetadata();
-//    }
-//
-//    private String getDataSource(String url, DataResponseType dataResponseType) throws IOException {
-//        WebClient webClient = autoLogin(url, password);
-//        HtmlPage page = webClient.getPage(url);
-//        return dataResponseType == DataResponseType.HTML ? page.getWebResponse().getContentAsString() : page.asText();
-//    }

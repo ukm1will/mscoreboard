@@ -40,7 +40,7 @@ public class BackendController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/views/{viewId}", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/view/{viewId}", produces = "application/json")
     public List<Golfer> getView(@PathVariable("viewId") final int viewId) throws Exception {
         String url = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + viewId;
         String dataSource = getDataSource(url, DataResponseType.TEXT);
@@ -53,7 +53,7 @@ public class BackendController {
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/urls", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/url", produces = "application/json")
     public List<CompetitionMetadata> getMasterScoreboardHomePage() throws IOException {
         String msHomePage = "http://masterscoreboard.co.uk/ClubIndex.php?CWID=5142";
         String dataSource = getDataSource(msHomePage, DataResponseType.HTML);

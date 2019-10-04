@@ -20,7 +20,6 @@ public class Golfer implements Comparable {
     private String fullName;
     private String[] parts;
 
-
     public int getPosition() {
         return position;
     }
@@ -60,6 +59,7 @@ public class Golfer implements Comparable {
             pts = calculatePoints();
             gross = calculateGross();
         } else if (scoringSystem == ScoringSystem.MEDAL) {
+            pts = -1;
             gross = Integer.parseInt(partsOfScore[0]);
         }
         else {
