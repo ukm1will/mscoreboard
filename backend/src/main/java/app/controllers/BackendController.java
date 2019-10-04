@@ -7,11 +7,13 @@ import models.Competition;
 import models.CompetitionMetadata;
 import models.Golfer;
 import models.HTMLToCompetitionMetaDataConverter;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import service.StringHelper;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 import static service.LoginService.autoLogin;
@@ -29,8 +31,9 @@ public class BackendController {
     public List<Golfer> getCompetition(CompetitionMetadata competitionURL) throws Exception {
         String url = competitionURL.getUrl();
         String dataSource = getDataSource(url, DataResponseType.TEXT);
-        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
         Competition competition = new Competition(dataSource);
+        String beforePart = StringHelper.getBeforePart(competition.getMasterScoreboardFormat());
+        dataSource = StringHelper.splitBeforeAndAfter(dataSource, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(dataSource);
         competition.addGolfersToCompetition();
         return competition.golfers;
@@ -41,8 +44,9 @@ public class BackendController {
     public List<Golfer> getView(@PathVariable("viewId") final int viewId) throws Exception {
         String url = "http://masterscoreboard.co.uk/results/Result.php?CWID=5142&View=" + viewId;
         String dataSource = getDataSource(url, DataResponseType.TEXT);
-        dataSource = StringHelper.splitBeforeAndAfter(dataSource, "Handicap\n", "Number of Cards Processed");
         Competition competition = new Competition(dataSource);
+        String beforePart = StringHelper.getBeforePart(competition.getMasterScoreboardFormat());
+        dataSource = StringHelper.splitBeforeAndAfter(dataSource, beforePart, "Number of Cards Processed");
         competition.addResultsToCompetition(dataSource);
         competition.addGolfersToCompetition();
         return competition.golfers;
