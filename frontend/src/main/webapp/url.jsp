@@ -14,15 +14,18 @@
         <tr>
             <th>Date</th>
             <th>Competition</th>
-            <th>ViewId</th>
-            <th>Anchor</th>
+            <th></th>
         </tr>
         <c:forEach var="url" items="${urls}">
             <tr>
                 <td>${url.getDateOfCompetition()}</td>
                 <td>${url.getCompetitionTitle()}</td>
-                <td>${url.getViewId()}</td>
-                <td><input type="submit" name="viewId" value="${url.getViewId()}"></td>
+                <td>
+                    <form action="/view">
+                        <input type="hidden" name="viewId" value="${url.getViewId()}">
+                        <input type="submit" value="Gross Result">
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

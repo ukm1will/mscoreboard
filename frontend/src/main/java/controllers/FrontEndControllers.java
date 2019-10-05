@@ -22,12 +22,10 @@ import java.util.List;
 public class FrontEndControllers {
 
     @RequestMapping("/view")
-    public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
-        int i = Integer.parseInt(request.getParameter("viewId"));
-        Colourise.out(i);
+    public ModelAndView add(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/view/" + i;
+        String url = "http://localhost:9090/view/" + Integer.parseInt(request.getParameter("viewId"));
         String json = restTemplate.getForObject(url, String.class);
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Golfer>>() {
@@ -43,7 +41,6 @@ public class FrontEndControllers {
         return mv;
     }
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/url")
     public ModelAndView getURIs() {
         ModelAndView mv = new ModelAndView();
@@ -53,11 +50,6 @@ public class FrontEndControllers {
         Type listType = new TypeToken<ArrayList<CompetitionMetadata>>() {
         }.getType();
         List<CompetitionMetadata> urls = gson.fromJson(json, listType);
-
-        for (CompetitionMetadata url : urls) {
-            System.out.println(url.toString());
-        }
-
         mv.setViewName("url.jsp");
         mv.addObject("urls", urls);
         return mv;

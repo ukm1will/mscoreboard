@@ -27,14 +27,6 @@ public class HTMLToCompetitionMetaDataConverter {
         this.rawData = rawData;
     }
 
-    public String toStringCompetitionURLList() {
-        StringBuilder sb = new StringBuilder();
-        for (CompetitionMetadata item : competitionMetadata) {
-           sb.append(String.format("%s %s %s\n", item.getDateOfCompetition(), item.getUrl(), item.getCompetitionTitle()));
-        }
-        return sb.toString();
-    }
-
     public List<String> getRawList() {
         return rawList;
     }
